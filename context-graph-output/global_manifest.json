@@ -1,0 +1,137 @@
+{
+  "version": "0.3.0",
+  "createdAt": "2026-03-06T12:46:49.056Z",
+  "lastUpdated": "2026-03-06T12:47:41.661Z",
+  "sessions": [],
+  "domains": [
+    {
+      "domain": "www.saucedemo.com",
+      "firstVisited": "2026-03-06T12:46:48.082Z",
+      "lastVisited": "2026-03-06T12:47:14.135Z",
+      "totalVisits": 10,
+      "pages": [
+        {
+          "captureId": "20260306_124648_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/",
+          "title": "Swag Labs",
+          "timestamp": "2026-03-06T12:46:48.082Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124651_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/inventory-item.html?id=4",
+          "title": "Swag Labs",
+          "timestamp": "2026-03-06T12:46:51.509Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124650_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/inventory.html",
+          "title": "Swag Labs",
+          "timestamp": "2026-03-06T12:46:50.347Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124653_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/inventory-item.html?id=0",
+          "title": "Swag Labs",
+          "timestamp": "2026-03-06T12:46:53.695Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124655_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/inventory-item.html?id=1",
+          "title": "",
+          "timestamp": "2026-03-06T12:46:55.878Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124700_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/checkout-step-two.html",
+          "title": "",
+          "timestamp": "2026-03-06T12:47:00.440Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124658_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/cart.html",
+          "title": "",
+          "timestamp": "2026-03-06T12:46:58.011Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124701_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/checkout-complete.html",
+          "title": "",
+          "timestamp": "2026-03-06T12:47:01.515Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124659_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/checkout-step-one.html",
+          "title": "",
+          "timestamp": "2026-03-06T12:46:59.098Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        },
+        {
+          "captureId": "20260306_124714_www_saucedemo_com",
+          "url": "https://www.saucedemo.com/inventory.html",
+          "title": "",
+          "timestamp": "2026-03-06T12:47:14.135Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "www.saucedemo.com",
+          "mode": "browser"
+        }
+      ]
+    },
+    {
+      "domain": "saucelabs.com",
+      "firstVisited": "2026-03-06T12:47:11.980Z",
+      "lastVisited": "2026-03-06T12:47:11.980Z",
+      "totalVisits": 1,
+      "pages": [
+        {
+          "captureId": "20260306_124711_saucelabs_com",
+          "url": "https://saucelabs.com/",
+          "title": "",
+          "timestamp": "2026-03-06T12:47:11.980Z",
+          "sessionId": "session_20260306_124643",
+          "domain": "saucelabs.com",
+          "mode": "browser"
+        }
+      ]
+    }
+  ],
+  "statistics": {
+    "totalSessions": 0,
+    "totalDomains": 0,
+    "totalPages": 11,
+    "totalNetworkRequests": 0,
+    "totalScreenshots": 0,
+    "storageSize": "0 MB",
+    "totalComponents": 11
+  },
+  "componentsRegistry": {
+    "path": "saucedemo/components_registry.json",
+    "totalComponents": 11,
+    "lastUpdated": "2026-03-06T12:47:40.401Z"
+  }
+}

@@ -1,0 +1,3531 @@
+{
+  "elements": [
+    {
+      "elementId": "elem_000",
+      "tagName": "div",
+      "text": "Open MenuAll ItemsAboutLogoutReset App StateClose MenuSwag LabsBack to products",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('header-container')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#header_container",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "header_container",
+        "class": "header_container inventory_details",
+        "data-test": "header-container"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 776,
+        "height": 114
+      },
+      "styles": {
+        "display": "flex",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": ""
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_001",
+      "tagName": "div",
+      "text": "Open MenuAll ItemsAboutLogoutReset App StateClose MenuSwag Labs",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('primary-header')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "div.primary_header",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "primary_header",
+        "data-test": "primary-header"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 776,
+        "height": 57
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": ""
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_002",
+      "tagName": "img",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('open-menu')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "img.bm-icon",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMC1jMDAwIDc5LmRhNGE3ZTVlZiwgMjAyMi8xMS8yMi0xMzo1MDowNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDI0LjEgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTA3QzBCMEVBRUYzMTFFREIwRThFMzc3OTlDRTMyNUIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTA3QzBCMEZBRUYzMTFFREIwRThFMzc3OTlDRTMyNUIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMDdDMEIwQ0FFRjMxMUVEQjBFOEUzNzc5OUNFMzI1QiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBMDdDMEIwREFFRjMxMUVEQjBFOEUzNzc5OUNFMzI1QiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pq0LVkQAAAERSURBVHjaYvz//z/DQAImhgEGow5gARE379wx8IuN2f/2/XsBeliqqqj4YMHkKYHqKioXwCEwb+mSAnpZDgK3799XmL9sWT48CrQ1NS/QO+gtTUwOgmhGWDY8c+GCw9NnzxToYbm0lNQDEwODAygOGM2Gow4Y0ILo+YsXCgtWLM//+OkzXcoCfj7eDwkRURMlJcQfgB0wf/mygr6ZM/Pp6XNg7mOsKiwqGBxRkBAZNQFEf/r8hZ8elvLx8nxMiIyeMFoQjTpg8BREA1kdgx2wcdu2hOSiwvn09HlfY1NhXHj4BHAUHDt9yoHeQX/t5k19eBpIio6ZAGoo0styYUHBD4lRURNHC6JRB4w6AAQAAgwA/fRn191dMT8AAAAASUVORK5CYII=",
+        "class": "bm-icon",
+        "srcset": "/static/media/menu3x.52cc17a327296e6394f33e8c20abc62c.svg",
+        "alt": "Open Menu",
+        "data-test": "open-menu",
+        "style": "width: 100%; height: 100%;"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 20,
+        "y": 20,
+        "width": 20,
+        "height": 20
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 20,
+          "y": 20
+        }
+      }
+    },
+    {
+      "elementId": "elem_003",
+      "tagName": "a",
+      "text": "All Items",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'All Items' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('inventory-sidebar-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('All Items')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#inventory_sidebar_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "inventory_sidebar_link",
+        "class": "bm-item menu-item",
+        "href": "#",
+        "data-test": "inventory-sidebar-link",
+        "tabindex": "-1",
+        "style": "display: block;"
+      },
+      "computedState": {
+        "isVisible": false,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": false
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(24, 88, 58)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "border": ""
+      },
+      "viewportInfo": {
+        "visible": false,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_004",
+      "tagName": "a",
+      "text": "About",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'About' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('about-sidebar-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('About')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#about_sidebar_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "about_sidebar_link",
+        "class": "bm-item menu-item",
+        "href": "https://saucelabs.com/",
+        "data-test": "about-sidebar-link",
+        "tabindex": "-1",
+        "style": "display: block;"
+      },
+      "computedState": {
+        "isVisible": false,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": false
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(24, 88, 58)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "border": ""
+      },
+      "viewportInfo": {
+        "visible": false,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_005",
+      "tagName": "a",
+      "text": "Logout",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Logout' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('logout-sidebar-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Logout')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#logout_sidebar_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "logout_sidebar_link",
+        "class": "bm-item menu-item",
+        "href": "#",
+        "data-test": "logout-sidebar-link",
+        "tabindex": "-1",
+        "style": "display: block;"
+      },
+      "computedState": {
+        "isVisible": false,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": false
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(24, 88, 58)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "border": ""
+      },
+      "viewportInfo": {
+        "visible": false,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_006",
+      "tagName": "a",
+      "text": "Reset App State",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Reset App State' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('reset-sidebar-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Reset App State')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#reset_sidebar_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "reset_sidebar_link",
+        "class": "bm-item menu-item",
+        "href": "#",
+        "data-test": "reset-sidebar-link",
+        "tabindex": "-1",
+        "style": "display: block;"
+      },
+      "computedState": {
+        "isVisible": false,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": false
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(24, 88, 58)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "border": ""
+      },
+      "viewportInfo": {
+        "visible": false,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_007",
+      "tagName": "img",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('close-menu')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "img.bm-cross",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMC1jMDAwIDc5LmRhNGE3ZTVlZiwgMjAyMi8xMS8yMi0xMzo1MDowNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDI0LjEgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NkNCNjBCQjlBRUY4MTFFREIwRThFMzc3OTlDRTMyNUIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NkNCNjBCQkFBRUY4MTFFREIwRThFMzc3OTlDRTMyNUIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMDdDMEIxNEFFRjMxMUVEQjBFOEUzNzc5OUNFMzI1QiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Q0I2MEJCOEFFRjgxMUVEQjBFOEUzNzc5OUNFMzI1QiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtV59sYAAAFSSURBVHjaYvz//z/DQAImhgEGow7AcMC0uXPrRTTU/3uFh5//8uWLAKUWgMyITEvbDzJzKtBsDAWgRIiMhdXV/sOwZ1jY+c+fPwugqyEWg/SCzEA2E10NRgi42dkfgLFPXbxgEJacvJ+ckADpAekFmQETM9M3uEAwBD4BXe2B5mpSQwKbz0H8T1jMwGoAJY4gxXKcDiDXEaRajtcBpDqCHMsJOoBYR5BrOVEOIOQISiwHYUZiK6PP0Gx1Gku2Qs9qK+fOdeTl4flAjLmMpNSG2ByBDEi1HGs5QE50kBrseEtCgkEGxbjkaFobYiteKS22mSgt202RyneyHEFp2U5p3UGVioUSR1CtYiHXEQzUrFjIcQTVLCfXEVS1nBxHYGim1HJ8johITd1P0AHUsByfIwg6YMqc2Q0ghVFpqfspsRybIyYDzSa7Oh7tmg1bBwAEGAACANpiovW4dgAAAABJRU5ErkJggg==",
+        "class": "bm-cross",
+        "srcset": "/static/media/close@3x.a30a8a1db39c69f50a19aa3c34876918.svg",
+        "alt": "Close Menu",
+        "data-test": "close-menu",
+        "style": "width: 100%; height: 100%;"
+      },
+      "computedState": {
+        "isVisible": false,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": false
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": false,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_008",
+      "tagName": "a",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('shopping-cart-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "a.shopping_cart_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "shopping_cart_link",
+        "data-test": "shopping-cart-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 716,
+        "y": 10,
+        "width": 40,
+        "height": 40
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "relative",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 716,
+          "y": 10
+        }
+      }
+    },
+    {
+      "elementId": "elem_009",
+      "tagName": "span",
+      "text": "1",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('shopping-cart-badge')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('1')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 5,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "span.shopping_cart_badge",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "shopping_cart_badge",
+        "data-test": "shopping-cart-badge"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 736,
+        "y": 10,
+        "width": 20,
+        "height": 20
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "relative",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 716,
+          "y": 10
+        }
+      }
+    },
+    {
+      "elementId": "elem_010",
+      "tagName": "div",
+      "text": "ProductsName (A to Z)Name (A to Z)Name (Z to A)Price (low to high)Price (high to low)",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('secondary-header')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "div.header_secondary_container",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "header_secondary_container",
+        "data-test": "secondary-header"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 57,
+        "width": 776,
+        "height": 56
+      },
+      "styles": {
+        "display": "flex",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 57
+        }
+      }
+    },
+    {
+      "elementId": "elem_011",
+      "tagName": "span",
+      "text": "Products",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('title')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Products')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "span.title",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "title",
+        "data-test": "title"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 20,
+        "y": 61,
+        "width": 76.796875,
+        "height": 48
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "18px",
+        "fontWeight": "500",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 20,
+          "y": 61
+        }
+      }
+    },
+    {
+      "elementId": "elem_012",
+      "tagName": "span",
+      "text": "Name (A to Z)",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('active-option')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Name (A to Z)')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "span.active_option",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "active_option",
+        "data-test": "active-option"
+      },
+      "computedState": {
+        "isVisible": false,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": false
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "styles": {
+        "display": "none",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": false,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_013",
+      "tagName": "select",
+      "text": "Name (A to Z)Name (Z to A)Price (low to high)Price (high to low)",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('combobox', { name: 'Name (A to Z)Name (Z to A)Price (low to high)Price (high to low)' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('product-sort-container')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "select.product_sort_container",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "product_sort_container",
+        "data-test": "product-sort-container"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": true,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 715,
+        "y": 70,
+        "width": 40,
+        "height": 30
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "0.001",
+        "zIndex": "auto",
+        "position": "absolute",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "fontSize": "13.3333px",
+        "fontWeight": "400",
+        "border": "1px solid rgb(118, 118, 118)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 715,
+          "y": 70
+        }
+      }
+    },
+    {
+      "elementId": "elem_014",
+      "tagName": "div",
+      "text": "Sauce Labs Backpackcarry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.$29.99RemoveSauce Labs Bike LightA red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.$9.99Add to cartSauce Labs Bolt T-ShirtGet your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.$15.99Add to cartSauce Labs Fleece JacketIt's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.$49.99Add to cartSauce Labs OnesieRib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.$7.99Add to cartTest.allTheThings() T-Shirt (Red)This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton.$15.99Add to cart",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('inventory-container')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#inventory_container",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 2,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "id": "inventory_container",
+        "class": "inventory_container",
+        "data-test": "inventory-container"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 114,
+        "width": 776,
+        "height": 1582
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 0,
+          "y": 114
+        }
+      }
+    },
+    {
+      "elementId": "elem_015",
+      "tagName": "div",
+      "text": "Sauce Labs Backpackcarry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.$29.99RemoveSauce Labs Bike LightA red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.$9.99Add to cartSauce Labs Bolt T-ShirtGet your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.$15.99Add to cartSauce Labs Fleece JacketIt's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.$49.99Add to cartSauce Labs OnesieRib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.$7.99Add to cartTest.allTheThings() T-Shirt (Red)This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton.$15.99Add to cart",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('inventory-list')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "div.inventory_list",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "inventory_list",
+        "data-test": "inventory-list"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 154,
+        "width": 776,
+        "height": 1542
+      },
+      "styles": {
+        "display": "flex",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 0,
+          "y": 154
+        }
+      }
+    },
+    {
+      "elementId": "elem_016",
+      "tagName": "div",
+      "text": "Sauce Labs Backpackcarry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.$29.99Remove",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('inventory-item')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "div.inventory_item",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 6,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "class": "inventory_item",
+        "data-test": "inventory-item"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 15,
+        "y": 154,
+        "width": 746,
+        "height": 240
+      },
+      "styles": {
+        "display": "flex",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "relative",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "1px solid rgb(237, 237, 237)",
+        "borderRadius": "8px"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 15,
+          "y": 154
+        }
+      }
+    },
+    {
+      "elementId": "elem_017",
+      "tagName": "a",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 15,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-4-img-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#item_4_img_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_4_img_link",
+        "data-test": "item-4-img-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 16,
+        "y": 155,
+        "width": 230,
+        "height": 238
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 16,
+          "y": 155
+        }
+      }
+    },
+    {
+      "elementId": "elem_018",
+      "tagName": "img",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('inventory-item-sauce-labs-backpack-img')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "img.inventory_item_img",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 6,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "alt": "Sauce Labs Backpack",
+        "class": "inventory_item_img",
+        "src": "/static/media/sauce-backpack-1200x1500.0a0b85a385945026062b.jpg",
+        "data-test": "inventory-item-sauce-labs-backpack-img"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 16,
+        "y": 155,
+        "width": 158.65625,
+        "height": 238
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)",
+        "borderRadius": "4px 0px 0px 4px"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 16,
+          "y": 155
+        }
+      }
+    },
+    {
+      "elementId": "elem_019",
+      "tagName": "footer",
+      "text": "TwitterFacebookLinkedIn© 2026 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('footer')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "footer.footer",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "footer",
+        "data-test": "footer"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 553,
+        "width": 490.34375,
+        "height": 149
+      },
+      "styles": {
+        "display": "table",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "relative",
+        "backgroundColor": "rgb(19, 35, 34)",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 0,
+          "y": 1726
+        }
+      }
+    },
+    {
+      "elementId": "elem_020",
+      "tagName": "a",
+      "text": "Twitter",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Twitter' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('social-twitter')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Twitter')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "a",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 8,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "href": "https://twitter.com/saucelabs",
+        "target": "_blank",
+        "rel": "noreferrer",
+        "data-test": "social-twitter"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 170.171875,
+        "y": 592,
+        "width": 30,
+        "height": 30
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "0px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 313,
+          "y": 1765
+        }
+      }
+    },
+    {
+      "elementId": "elem_021",
+      "tagName": "a",
+      "text": "Facebook",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Facebook' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('social-facebook')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Facebook')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "a",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 8,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "href": "https://www.facebook.com/saucelabs",
+        "target": "_blank",
+        "rel": "noreferrer",
+        "data-test": "social-facebook"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 220.171875,
+        "y": 592,
+        "width": 30,
+        "height": 30
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "0px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 363,
+          "y": 1765
+        }
+      }
+    },
+    {
+      "elementId": "elem_022",
+      "tagName": "a",
+      "text": "LinkedIn",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'LinkedIn' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('social-linkedin')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('LinkedIn')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "a",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 8,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "href": "https://www.linkedin.com/company/sauce-labs/",
+        "target": "_blank",
+        "rel": "noreferrer",
+        "data-test": "social-linkedin"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 270.171875,
+        "y": 592,
+        "width": 30,
+        "height": 30
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "0px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 413,
+          "y": 1765
+        }
+      }
+    },
+    {
+      "elementId": "elem_023",
+      "tagName": "button",
+      "text": "Open Menu",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Open Menu' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Open Menu')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#react-burger-menu-btn",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "type": "button",
+        "id": "react-burger-menu-btn",
+        "style": "position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; border: none; font-size: 0px; background: transparent; cursor: pointer;"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 20,
+        "y": 20,
+        "width": 20,
+        "height": 20
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "1",
+        "position": "absolute",
+        "color": "rgb(0, 0, 0)",
+        "fontSize": "0px",
+        "fontWeight": "400"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 20,
+          "y": 20
+        }
+      }
+    },
+    {
+      "elementId": "elem_024",
+      "tagName": "button",
+      "text": "Close Menu",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Close Menu' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Close Menu')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#react-burger-cross-btn",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "type": "button",
+        "id": "react-burger-cross-btn",
+        "tabindex": "-1",
+        "style": "position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; border: none; font-size: 0px; background: transparent; cursor: pointer;"
+      },
+      "computedState": {
+        "isVisible": false,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": false
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "1",
+        "position": "absolute",
+        "color": "rgb(0, 0, 0)",
+        "fontSize": "0px",
+        "fontWeight": "400"
+      },
+      "viewportInfo": {
+        "visible": false,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "elementId": "elem_025",
+      "tagName": "button",
+      "text": "Back to products",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Back to products' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('back-to-products')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Back to products')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#back-to-products",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "btn btn_secondary back btn_large inventory_details_back_button",
+        "data-test": "back-to-products",
+        "id": "back-to-products",
+        "name": "back-to-products"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 20,
+        "y": 69,
+        "width": 169.484375,
+        "height": 32
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "18px",
+        "fontWeight": "500",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 20,
+          "y": 61
+        }
+      }
+    },
+    {
+      "elementId": "elem_026",
+      "tagName": "button",
+      "text": "Add to cart",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Add to cart' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('add-to-cart')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Add to cart')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#remove",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "btn btn_primary btn_small btn_inventory",
+        "data-test": "add-to-cart",
+        "id": "add-to-cart",
+        "name": "add-to-cart",
+        "data-cc-element-id": "elem_018"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 345.671875,
+        "y": 304,
+        "width": 160,
+        "height": 34
+      },
+      "styles": {
+        "display": "flex",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 246,
+          "y": 155
+        }
+      }
+    },
+    {
+      "elementId": "elem_027",
+      "tagName": "a",
+      "text": "Sauce Labs Backpack",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Sauce Labs Backpack' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-4-title-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Sauce Labs Backpack')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#item_4_title_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_4_title_link",
+        "data-test": "item-4-title-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 266,
+        "y": 175,
+        "width": 460,
+        "height": 20
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(74, 74, 74)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(74, 74, 74)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 266,
+          "y": 175
+        }
+      }
+    },
+    {
+      "elementId": "elem_028",
+      "tagName": "a",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 15,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-0-img-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#item_0_img_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_0_img_link",
+        "data-test": "item-0-img-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 16,
+        "y": 407,
+        "width": 230,
+        "height": 238
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 16,
+          "y": 407
+        }
+      }
+    },
+    {
+      "elementId": "elem_029",
+      "tagName": "button",
+      "text": "Remove",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Remove' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('remove-sauce-labs-backpack')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Remove')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#remove-sauce-labs-backpack",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "btn btn_secondary btn_small btn_inventory ",
+        "data-test": "remove-sauce-labs-backpack",
+        "id": "remove-sauce-labs-backpack",
+        "name": "remove-sauce-labs-backpack"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 566,
+        "y": 339,
+        "width": 160,
+        "height": 34
+      },
+      "styles": {
+        "display": "flex",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 266,
+          "y": 331
+        }
+      }
+    },
+    {
+      "elementId": "elem_030",
+      "tagName": "a",
+      "text": "Sauce Labs Bike Light",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Sauce Labs Bike Light' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-0-title-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Sauce Labs Bike Light')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#item_0_title_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_0_title_link",
+        "data-test": "item-0-title-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 266,
+        "y": 427,
+        "width": 460,
+        "height": 20
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(74, 74, 74)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(74, 74, 74)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 266,
+          "y": 427
+        }
+      }
+    },
+    {
+      "elementId": "elem_031",
+      "tagName": "button",
+      "text": "Remove",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Remove' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('remove-sauce-labs-bike-light')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Remove')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#remove-sauce-labs-bike-light",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "btn btn_secondary btn_small btn_inventory ",
+        "data-test": "remove-sauce-labs-bike-light",
+        "id": "remove-sauce-labs-bike-light",
+        "name": "remove-sauce-labs-bike-light",
+        "data-cc-element-id": "elem_033"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 566,
+        "y": 591,
+        "width": 160,
+        "height": 34
+      }
+    },
+    {
+      "elementId": "elem_032",
+      "tagName": "a",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 15,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-1-img-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#item_1_img_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_1_img_link",
+        "data-test": "item-1-img-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 16,
+        "y": 659,
+        "width": 230,
+        "height": 238
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 16,
+          "y": 659
+        }
+      }
+    },
+    {
+      "elementId": "elem_033",
+      "tagName": "a",
+      "text": "Sauce Labs Bolt T-Shirt",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Sauce Labs Bolt T-Shirt' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-1-title-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Sauce Labs Bolt T-Shirt')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#item_1_title_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_1_title_link",
+        "data-test": "item-1-title-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 266,
+        "y": 679,
+        "width": 460,
+        "height": 20
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(74, 74, 74)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(74, 74, 74)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 266,
+          "y": 679
+        }
+      }
+    },
+    {
+      "elementId": "elem_034",
+      "tagName": "button",
+      "text": "Add to cart",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Add to cart' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 4,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('add-to-cart-sauce-labs-bolt-t-shirt')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Add to cart')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 4,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#add-to-cart-sauce-labs-bolt-t-shirt",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "btn btn_primary btn_small btn_inventory ",
+        "data-test": "add-to-cart-sauce-labs-bolt-t-shirt",
+        "id": "add-to-cart-sauce-labs-bolt-t-shirt",
+        "name": "add-to-cart-sauce-labs-bolt-t-shirt"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 566,
+        "y": 843,
+        "width": 160,
+        "height": 34
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "16px",
+        "fontWeight": "500",
+        "border": "1px solid rgb(19, 35, 34)",
+        "borderRadius": "4px"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 566,
+          "y": 843
+        }
+      }
+    },
+    {
+      "elementId": "elem_035",
+      "tagName": "a",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 15,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-5-img-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#item_5_img_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_5_img_link",
+        "data-test": "item-5-img-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 16,
+        "y": 911,
+        "width": 230,
+        "height": 238
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 16,
+          "y": 911
+        }
+      }
+    },
+    {
+      "elementId": "elem_036",
+      "tagName": "a",
+      "text": "Sauce Labs Fleece Jacket",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Sauce Labs Fleece Jacket' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-5-title-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Sauce Labs Fleece Jacket')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#item_5_title_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_5_title_link",
+        "data-test": "item-5-title-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 266,
+        "y": 931,
+        "width": 460,
+        "height": 20
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(74, 74, 74)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(74, 74, 74)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 266,
+          "y": 931
+        }
+      }
+    },
+    {
+      "elementId": "elem_037",
+      "tagName": "button",
+      "text": "Add to cart",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Add to cart' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 6,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('add-to-cart-sauce-labs-fleece-jacket')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Add to cart')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 6,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#add-to-cart-sauce-labs-fleece-jacket",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "btn btn_primary btn_small btn_inventory ",
+        "data-test": "add-to-cart-sauce-labs-fleece-jacket",
+        "id": "add-to-cart-sauce-labs-fleece-jacket",
+        "name": "add-to-cart-sauce-labs-fleece-jacket"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 566,
+        "y": 906,
+        "width": 160,
+        "height": 34
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "16px",
+        "fontWeight": "500",
+        "border": "1px solid rgb(19, 35, 34)",
+        "borderRadius": "4px"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 566,
+          "y": 1095
+        }
+      }
+    },
+    {
+      "elementId": "elem_038",
+      "tagName": "a",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 15,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-2-img-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#item_2_img_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_2_img_link",
+        "data-test": "item-2-img-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 16,
+        "y": 974,
+        "width": 230,
+        "height": 238
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 16,
+          "y": 1163
+        }
+      }
+    },
+    {
+      "elementId": "elem_039",
+      "tagName": "a",
+      "text": "Sauce Labs Onesie",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Sauce Labs Onesie' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-2-title-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Sauce Labs Onesie')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#item_2_title_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_2_title_link",
+        "data-test": "item-2-title-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 266,
+        "y": 1183,
+        "width": 460,
+        "height": 20
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(74, 74, 74)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(74, 74, 74)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 266,
+          "y": 1183
+        }
+      }
+    },
+    {
+      "elementId": "elem_040",
+      "tagName": "button",
+      "text": "Add to cart",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Add to cart' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 6,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('add-to-cart-sauce-labs-onesie')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Add to cart')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 6,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#add-to-cart-sauce-labs-onesie",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "btn btn_primary btn_small btn_inventory ",
+        "data-test": "add-to-cart-sauce-labs-onesie",
+        "id": "add-to-cart-sauce-labs-onesie",
+        "name": "add-to-cart-sauce-labs-onesie"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 566,
+        "y": 1347,
+        "width": 160,
+        "height": 34
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "16px",
+        "fontWeight": "500",
+        "border": "1px solid rgb(19, 35, 34)",
+        "borderRadius": "4px"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 566,
+          "y": 1347
+        }
+      }
+    },
+    {
+      "elementId": "elem_041",
+      "tagName": "a",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 15,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-3-img-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#item_3_img_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_3_img_link",
+        "data-test": "item-3-img-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 16,
+        "y": 1415,
+        "width": 230,
+        "height": 238
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 16,
+          "y": 1415
+        }
+      }
+    },
+    {
+      "elementId": "elem_042",
+      "tagName": "a",
+      "text": "Test.allTheThings() T-Shirt (Red)",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Test.allTheThings() T-Shirt (Red)' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('item-3-title-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Test.allTheThings() T-Shirt (Red)')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#item_3_title_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "href": "#",
+        "id": "item_3_title_link",
+        "data-test": "item-3-title-link"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 266,
+        "y": 1435,
+        "width": 460,
+        "height": 20
+      },
+      "styles": {
+        "display": "inline",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(74, 74, 74)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(74, 74, 74)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 266,
+          "y": 1435
+        }
+      }
+    },
+    {
+      "elementId": "elem_043",
+      "tagName": "button",
+      "text": "Add to cart",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button', { name: 'Add to cart' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 6,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('add-to-cart-test.allthethings()-t-shirt-(red)')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Add to cart')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 6,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#add-to-cart-test.allthethings()-t-shirt-(red)",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 0,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "class": "btn btn_primary btn_small btn_inventory ",
+        "data-test": "add-to-cart-test.allthethings()-t-shirt-(red)",
+        "id": "add-to-cart-test.allthethings()-t-shirt-(red)",
+        "name": "add-to-cart-test.allthethings()-t-shirt-(red)"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 566,
+        "y": 1599,
+        "width": 160,
+        "height": 34
+      }
+    },
+    {
+      "elementId": "elem_044",
+      "tagName": "a",
+      "text": "Twitter",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Twitter' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('social-twitter')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Twitter')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "a",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 20,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "href": "https://twitter.com/saucelabs",
+        "target": "_blank",
+        "rel": "noreferrer",
+        "data-test": "social-twitter"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 313,
+        "y": 1765,
+        "width": 30,
+        "height": 30
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "0px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 313,
+          "y": 1765
+        }
+      }
+    },
+    {
+      "elementId": "elem_045",
+      "tagName": "a",
+      "text": "Facebook",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Facebook' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('social-facebook')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Facebook')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "a",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 20,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "href": "https://www.facebook.com/saucelabs",
+        "target": "_blank",
+        "rel": "noreferrer",
+        "data-test": "social-facebook"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 363,
+        "y": 1765,
+        "width": 30,
+        "height": 30
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "0px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 363,
+          "y": 1765
+        }
+      }
+    },
+    {
+      "elementId": "elem_046",
+      "tagName": "a",
+      "text": "LinkedIn",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'LinkedIn' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('social-linkedin')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('LinkedIn')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "a",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 20,
+          "isUnique": false
+        }
+      ],
+      "attributes": {
+        "href": "https://www.linkedin.com/company/sauce-labs/",
+        "target": "_blank",
+        "rel": "noreferrer",
+        "data-test": "social-linkedin"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 413,
+        "y": 1765,
+        "width": 30,
+        "height": 30
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(0, 0, 238)",
+        "fontSize": "0px",
+        "fontWeight": "400",
+        "border": "0px none rgb(0, 0, 238)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 413,
+          "y": 1765
+        }
+      }
+    }
+  ],
+  "viewportElements": [
+    {
+      "elementId": "elem_000",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_001",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_002",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 20,
+        "y": 20
+      }
+    },
+    {
+      "elementId": "elem_003",
+      "visible": false,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_004",
+      "visible": false,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_005",
+      "visible": false,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_006",
+      "visible": false,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_007",
+      "visible": false,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_008",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 716,
+        "y": 10
+      }
+    },
+    {
+      "elementId": "elem_009",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 716,
+        "y": 10
+      }
+    },
+    {
+      "elementId": "elem_010",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 57
+      }
+    },
+    {
+      "elementId": "elem_011",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 20,
+        "y": 61
+      }
+    },
+    {
+      "elementId": "elem_012",
+      "visible": false,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_013",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 715,
+        "y": 70
+      }
+    },
+    {
+      "elementId": "elem_016",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 15,
+        "y": 154
+      }
+    },
+    {
+      "elementId": "elem_017",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 16,
+        "y": 155
+      }
+    },
+    {
+      "elementId": "elem_018",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 16,
+        "y": 155
+      }
+    },
+    {
+      "elementId": "elem_023",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 20,
+        "y": 20
+      }
+    },
+    {
+      "elementId": "elem_024",
+      "visible": false,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "elementId": "elem_025",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 20,
+        "y": 61
+      }
+    },
+    {
+      "elementId": "elem_026",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 246,
+        "y": 155
+      }
+    },
+    {
+      "elementId": "elem_027",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 266,
+        "y": 175
+      }
+    },
+    {
+      "elementId": "elem_029",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 266,
+        "y": 331
+      }
+    },
+    {
+      "elementId": "elem_030",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 266,
+        "y": 427
+      }
+    }
+  ],
+  "formFields": [
+    {
+      "elementId": "elem_013",
+      "fieldType": "select-one",
+      "required": false,
+      "validationRules": {
+        "required": false
+      }
+    }
+  ]
+}

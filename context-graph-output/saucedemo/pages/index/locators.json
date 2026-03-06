@@ -1,0 +1,545 @@
+{
+  "elements": [
+    {
+      "elementId": "elem_000",
+      "tagName": "div",
+      "text": "Accepted usernames are:standard_userlocked_out_userproblem_userperformance_glitch_usererror_uservisual_userPassword for all users:secret_sauce",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('login-container')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "div.login_wrapper",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "login_wrapper",
+        "data-test": "login-container"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 108,
+        "width": 776,
+        "height": 512.53125
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(19, 35, 34)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 0,
+          "y": 108
+        }
+      }
+    },
+    {
+      "elementId": "elem_001",
+      "tagName": "input",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('textbox')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('username')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "placeholder",
+          "value": "getByPlaceholder('Username')",
+          "confidence": "medium",
+          "resilience": 70,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#user-name",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "input_error form_input",
+        "placeholder": "Username",
+        "type": "text",
+        "data-test": "username",
+        "id": "user-name",
+        "name": "user-name",
+        "autocorrect": "off",
+        "autocapitalize": "none",
+        "value": ""
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": true,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 116.40625,
+        "y": 124,
+        "width": 543.1875,
+        "height": 39
+      },
+      "styles": {
+        "display": "inline-block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(72, 76, 85)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": ""
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 116.40625,
+          "y": 124
+        }
+      }
+    },
+    {
+      "elementId": "elem_002",
+      "tagName": "input",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('textbox')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 2,
+          "isUnique": false
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('password')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "placeholder",
+          "value": "getByPlaceholder('Password')",
+          "confidence": "medium",
+          "resilience": 70,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#password",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "input_error form_input",
+        "placeholder": "Password",
+        "type": "password",
+        "data-test": "password",
+        "id": "password",
+        "name": "password",
+        "autocorrect": "off",
+        "autocapitalize": "none",
+        "value": ""
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": true,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 116.40625,
+        "y": 178,
+        "width": 543.1875,
+        "height": 39
+      },
+      "styles": {
+        "display": "inline-block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(72, 76, 85)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": ""
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 116.40625,
+          "y": 178
+        }
+      }
+    },
+    {
+      "elementId": "elem_003",
+      "tagName": "input",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('button')",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('login-button')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#login-button",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "type": "submit",
+        "class": "submit-button btn_action",
+        "data-test": "login-button",
+        "id": "login-button",
+        "name": "login-button",
+        "value": "Login"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": true,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 116.40625,
+        "y": 272,
+        "width": 543.1875,
+        "height": 49
+      },
+      "styles": {
+        "display": "inline-block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "backgroundColor": "rgb(61, 220, 145)",
+        "color": "rgb(19, 35, 34)",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "border": "4px solid rgb(61, 220, 145)",
+        "borderRadius": "4px"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": true,
+        "viewportPosition": {
+          "x": 116.40625,
+          "y": 272
+        }
+      }
+    },
+    {
+      "elementId": "elem_004",
+      "tagName": "div",
+      "text": "Accepted usernames are:standard_userlocked_out_userproblem_userperformance_glitch_usererror_uservisual_userPassword for all users:secret_sauce",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('login-credentials-container')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "div.login_credentials_wrap",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "login_credentials_wrap",
+        "data-test": "login-credentials-container"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 367,
+        "width": 776,
+        "height": 253.53125
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(255, 255, 255)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 0,
+          "y": 367
+        }
+      }
+    },
+    {
+      "elementId": "elem_005",
+      "tagName": "div",
+      "text": "Accepted usernames are:standard_userlocked_out_userproblem_userperformance_glitch_usererror_uservisual_user",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('login-credentials')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#login_credentials",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "login_credentials",
+        "class": "login_credentials",
+        "data-test": "login-credentials"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 116.40625,
+        "y": 383,
+        "width": 271.59375,
+        "height": 206.53125
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(255, 255, 255)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 116.40625,
+          "y": 383
+        }
+      }
+    },
+    {
+      "elementId": "elem_006",
+      "tagName": "div",
+      "text": "Password for all users:secret_sauce",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('login-password')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Password for all users:secret_sauce')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "div.login_password",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "login_password",
+        "data-test": "login-password"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 388,
+        "y": 383,
+        "width": 271.59375,
+        "height": 206.53125
+      },
+      "styles": {
+        "display": "block",
+        "visibility": "visible",
+        "opacity": "1",
+        "zIndex": "auto",
+        "position": "static",
+        "color": "rgb(255, 255, 255)",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "border": "0px none rgb(255, 255, 255)"
+      },
+      "viewportInfo": {
+        "visible": true,
+        "inViewport": false,
+        "viewportPosition": {
+          "x": 388,
+          "y": 383
+        }
+      }
+    }
+  ],
+  "viewportElements": [
+    {
+      "elementId": "elem_001",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 116.40625,
+        "y": 124
+      }
+    },
+    {
+      "elementId": "elem_002",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 116.40625,
+        "y": 178
+      }
+    },
+    {
+      "elementId": "elem_003",
+      "visible": true,
+      "inViewport": true,
+      "viewportPosition": {
+        "x": 116.40625,
+        "y": 272
+      }
+    }
+  ],
+  "formFields": [
+    {
+      "elementId": "elem_001",
+      "fieldType": "text",
+      "placeholder": "Username",
+      "required": false,
+      "validationRules": {
+        "required": false
+      }
+    },
+    {
+      "elementId": "elem_002",
+      "fieldType": "password",
+      "placeholder": "Password",
+      "required": false,
+      "validationRules": {
+        "required": false
+      }
+    },
+    {
+      "elementId": "elem_003",
+      "fieldType": "submit",
+      "required": false,
+      "validationRules": {
+        "required": false
+      }
+    }
+  ]
+}

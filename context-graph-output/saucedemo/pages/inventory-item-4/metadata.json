@@ -1,0 +1,60 @@
+{
+  "captureId": "20260306_124651_www_saucedemo_com",
+  "timestamp": "2026-03-06T12:46:51.509Z",
+  "mode": "browser",
+  "url": "https://www.saucedemo.com/inventory-item.html?id=4",
+  "domain": "www.saucedemo.com",
+  "title": "Swag Labs",
+  "viewport": {
+    "width": 1920,
+    "height": 1080,
+    "deviceScaleFactor": 1
+  },
+  "timing": {
+    "navigationStart": 2.5,
+    "domContentLoaded": 1224.1000000000931,
+    "loadComplete": 1557.3999999999069,
+    "networkIdle": 1772801226525,
+    "firstContentfulPaint": 1360,
+    "timeToInteractive": 691.6000000000931
+  },
+  "performance": {
+    "domNodes": 66,
+    "scripts": 2,
+    "stylesheets": 2,
+    "images": 4,
+    "totalRequests": 0
+  },
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "cookies": "[REDACTED]",
+  "pageName": "inventory-item-4",
+  "pageState": {
+    "scrollPosition": {
+      "x": 0,
+      "y": 0
+    },
+    "focusedElement": "body",
+    "selectedText": "",
+    "localStorage": {
+      "backtrace-guid": "[REDACTED]",
+      "backtrace-last-active": "[REDACTED]"
+    }
+  },
+  "networkSummary": {
+    "totalRequests": 116,
+    "failedRequests": 8,
+    "requestTypes": {
+      "document": 4,
+      "stylesheet": 8,
+      "script": 4,
+      "fetch": 16,
+      "font": 12,
+      "image": 72
+    },
+    "apiEndpoints": [
+      "/api/unique-events/submit",
+      "/api/summed-events/submit"
+    ]
+  },
+  "contentHash": "5b04f9f7058c178d"
+}

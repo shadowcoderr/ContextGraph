@@ -1,0 +1,354 @@
+{
+  "elements": [
+    {
+      "elementId": "elem_000",
+      "tagName": "div",
+      "text": "Open MenuAll ItemsAboutLogoutReset App StateClose MenuSwag LabsProductsName (A to Z)Name (A to Z)Name (Z to A)Price (low to high)Price (high to low)",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('header-container')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#header_container",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "header_container",
+        "class": "header_container",
+        "data-test": "header-container"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 776,
+        "height": 114
+      }
+    },
+    {
+      "elementId": "elem_001",
+      "tagName": "div",
+      "text": "Open MenuAll ItemsAboutLogoutReset App StateClose MenuSwag Labs",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('primary-header')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "div.primary_header",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "primary_header",
+        "data-test": "primary-header"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "width": 776,
+        "height": 57
+      }
+    },
+    {
+      "elementId": "elem_002",
+      "tagName": "img",
+      "text": "",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('open-menu')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "img.bm-icon",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMC1jMDAwIDc5LmRhNGE3ZTVlZiwgMjAyMi8xMS8yMi0xMzo1MDowNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDI0LjEgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTA3QzBCMEVBRUYzMTFFREIwRThFMzc3OTlDRTMyNUIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTA3QzBCMEZBRUYzMTFFREIwRThFMzc3OTlDRTMyNUIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMDdDMEIwQ0FFRjMxMUVEQjBFOEUzNzc5OUNFMzI1QiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBMDdDMEIwREFFRjMxMUVEQjBFOEUzNzc5OUNFMzI1QiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pq0LVkQAAAERSURBVHjaYvz//z/DQAImhgEGow5gARE379wx8IuN2f/2/XsBeliqqqj4YMHkKYHqKioXwCEwb+mSAnpZDgK3799XmL9sWT48CrQ1NS/QO+gtTUwOgmhGWDY8c+GCw9NnzxToYbm0lNQDEwODAygOGM2Gow4Y0ILo+YsXCgtWLM//+OkzXcoCfj7eDwkRURMlJcQfgB0wf/mygr6ZM/Pp6XNg7mOsKiwqGBxRkBAZNQFEf/r8hZ8elvLx8nxMiIyeMFoQjTpg8BREA1kdgx2wcdu2hOSiwvn09HlfY1NhXHj4BHAUHDt9yoHeQX/t5k19eBpIio6ZAGoo0styYUHBD4lRURNHC6JRB4w6AAQAAgwA/fRn191dMT8AAAAASUVORK5CYII=",
+        "class": "bm-icon",
+        "srcset": "/static/media/menu3x.52cc17a327296e6394f33e8c20abc62c.svg",
+        "alt": "Open Menu",
+        "data-test": "open-menu",
+        "style": "width: 100%; height: 100%;"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 20,
+        "y": 20,
+        "width": 20,
+        "height": 20
+      }
+    },
+    {
+      "elementId": "elem_003",
+      "tagName": "a",
+      "text": "All Items",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'All Items' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('inventory-sidebar-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('All Items')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#inventory_sidebar_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "inventory_sidebar_link",
+        "class": "bm-item menu-item",
+        "href": "#",
+        "data-test": "inventory-sidebar-link",
+        "style": "display: block;"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": -153.31570434570312,
+        "y": 40,
+        "width": 252,
+        "height": 41
+      }
+    },
+    {
+      "elementId": "elem_004",
+      "tagName": "a",
+      "text": "About",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'About' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('about-sidebar-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('About')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "#about_sidebar_link",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "about_sidebar_link",
+        "class": "bm-item menu-item",
+        "href": "https://saucelabs.com/",
+        "data-test": "about-sidebar-link",
+        "style": "display: block;"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 24,
+        "y": 88,
+        "width": 252,
+        "height": 41
+      }
+    },
+    {
+      "elementId": "elem_005",
+      "tagName": "a",
+      "text": "Logout",
+      "locators": [
+        {
+          "strategy": "role",
+          "value": "getByRole('link', { name: 'Logout' })",
+          "confidence": "high",
+          "resilience": 95,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "testid",
+          "value": "getByTestId('logout-sidebar-link')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Logout')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "css",
+          "value": "#login_credentials",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "id": "logout_sidebar_link",
+        "class": "bm-item menu-item",
+        "href": "#",
+        "data-test": "logout-sidebar-link",
+        "style": "display: block;"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 24,
+        "y": 136,
+        "width": 252,
+        "height": 41
+      }
+    },
+    {
+      "elementId": "elem_006",
+      "tagName": "div",
+      "text": "Password for all users:secret_sauce",
+      "locators": [
+        {
+          "strategy": "testid",
+          "value": "getByTestId('login-password')",
+          "confidence": "high",
+          "resilience": 90,
+          "matchCount": 0,
+          "isUnique": false
+        },
+        {
+          "strategy": "text",
+          "value": "getByText('Password for all users:secret_sauce')",
+          "confidence": "medium",
+          "resilience": 60,
+          "matchCount": 1,
+          "isUnique": true
+        },
+        {
+          "strategy": "css",
+          "value": "div.login_password",
+          "confidence": "low",
+          "resilience": 30,
+          "matchCount": 1,
+          "isUnique": true
+        }
+      ],
+      "attributes": {
+        "class": "login_password",
+        "data-test": "login-password"
+      },
+      "computedState": {
+        "isVisible": true,
+        "isEnabled": true,
+        "isChecked": false,
+        "isEditable": false,
+        "isFocusable": true
+      },
+      "position": {
+        "x": 388,
+        "y": 383,
+        "width": 271.59375,
+        "height": 206.53125
+      }
+    }
+  ]
+}

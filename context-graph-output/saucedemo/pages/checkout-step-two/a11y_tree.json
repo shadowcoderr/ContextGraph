@@ -1,0 +1,1278 @@
+{
+  "role": "RootWebArea",
+  "name": "Swag Labs",
+  "children": [
+    {
+      "role": "none",
+      "name": "",
+      "children": [
+        {
+          "role": "none",
+          "name": "",
+          "children": [
+            {
+              "role": "generic",
+              "name": "",
+              "children": [
+                {
+                  "role": "generic",
+                  "name": "",
+                  "children": [
+                    {
+                      "role": "generic",
+                      "name": "",
+                      "children": [
+                        {
+                          "role": "generic",
+                          "name": "",
+                          "children": [
+                            {
+                              "role": "none",
+                              "name": "",
+                              "children": [
+                                {
+                                  "role": "generic",
+                                  "name": "",
+                                  "children": [
+                                    {
+                                      "role": "none",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "generic",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "generic",
+                                              "name": "",
+                                              "children": [
+                                                {
+                                                  "role": "button",
+                                                  "name": "Open Menu",
+                                                  "children": [
+                                                    {
+                                                      "role": "StaticText",
+                                                      "name": "Open Menu",
+                                                      "children": [
+                                                        {
+                                                          "role": "InlineTextBox",
+                                                          "name": "Open Menu",
+                                                          "children": [],
+                                                          "required": false,
+                                                          "disabled": false,
+                                                          "focused": false
+                                                        }
+                                                      ],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    }
+                                                  ],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                },
+                                                {
+                                                  "role": "image",
+                                                  "name": "Open Menu",
+                                                  "children": [],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "none",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "none",
+                                              "name": "",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "none",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "none",
+                                              "name": "",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "none",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "none",
+                                              "name": "",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "none",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "none",
+                                              "name": "",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "none",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "none",
+                                              "name": "",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                },
+                                {
+                                  "role": "generic",
+                                  "name": "",
+                                  "children": [
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Swag Labs",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Swag Labs",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                },
+                                {
+                                  "role": "generic",
+                                  "name": "",
+                                  "children": [
+                                    {
+                                      "role": "link",
+                                      "name": "2",
+                                      "children": [
+                                        {
+                                          "role": "none",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "StaticText",
+                                              "name": "2",
+                                              "children": [
+                                                {
+                                                  "role": "InlineTextBox",
+                                                  "name": "2",
+                                                  "children": [],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            },
+                            {
+                              "role": "none",
+                              "name": "",
+                              "children": [
+                                {
+                                  "role": "none",
+                                  "name": "",
+                                  "children": [
+                                    {
+                                      "role": "StaticText",
+                                      "name": "Checkout: Overview",
+                                      "children": [
+                                        {
+                                          "role": "InlineTextBox",
+                                          "name": "Checkout: Overview",
+                                          "children": [],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            }
+                          ],
+                          "required": false,
+                          "disabled": false,
+                          "focused": false
+                        },
+                        {
+                          "role": "generic",
+                          "name": "",
+                          "children": [
+                            {
+                              "role": "none",
+                              "name": "",
+                              "children": [
+                                {
+                                  "role": "none",
+                                  "name": "",
+                                  "children": [
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "QTY",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "QTY",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Description",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Description",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "none",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "generic",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "StaticText",
+                                              "name": "1",
+                                              "children": [
+                                                {
+                                                  "role": "InlineTextBox",
+                                                  "name": "1",
+                                                  "children": [],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "generic",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "link",
+                                              "name": "Sauce Labs Backpack",
+                                              "children": [
+                                                {
+                                                  "role": "generic",
+                                                  "name": "",
+                                                  "children": [
+                                                    {
+                                                      "role": "StaticText",
+                                                      "name": "Sauce Labs Backpack",
+                                                      "children": [
+                                                        {
+                                                          "role": "InlineTextBox",
+                                                          "name": "Sauce Labs Backpack",
+                                                          "children": [],
+                                                          "required": false,
+                                                          "disabled": false,
+                                                          "focused": false
+                                                        }
+                                                      ],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    }
+                                                  ],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            },
+                                            {
+                                              "role": "generic",
+                                              "name": "",
+                                              "children": [
+                                                {
+                                                  "role": "StaticText",
+                                                  "name": "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.",
+                                                  "children": [
+                                                    {
+                                                      "role": "InlineTextBox",
+                                                      "name": "carry.allTheThings() with the sleek, streamlined Sly Pack that melds ",
+                                                      "children": [],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    },
+                                                    {
+                                                      "role": "InlineTextBox",
+                                                      "name": "uncompromising style with unequaled laptop and tablet protection.",
+                                                      "children": [],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    }
+                                                  ],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            },
+                                            {
+                                              "role": "none",
+                                              "name": "",
+                                              "children": [
+                                                {
+                                                  "role": "generic",
+                                                  "name": "",
+                                                  "children": [
+                                                    {
+                                                      "role": "StaticText",
+                                                      "name": "$",
+                                                      "children": [
+                                                        {
+                                                          "role": "InlineTextBox",
+                                                          "name": "$",
+                                                          "children": [],
+                                                          "required": false,
+                                                          "disabled": false,
+                                                          "focused": false
+                                                        }
+                                                      ],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    },
+                                                    {
+                                                      "role": "StaticText",
+                                                      "name": "29.99",
+                                                      "children": [
+                                                        {
+                                                          "role": "InlineTextBox",
+                                                          "name": "29.99",
+                                                          "children": [],
+                                                          "required": false,
+                                                          "disabled": false,
+                                                          "focused": false
+                                                        }
+                                                      ],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    }
+                                                  ],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "none",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "generic",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "StaticText",
+                                              "name": "1",
+                                              "children": [
+                                                {
+                                                  "role": "InlineTextBox",
+                                                  "name": "1",
+                                                  "children": [],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "generic",
+                                          "name": "",
+                                          "children": [
+                                            {
+                                              "role": "link",
+                                              "name": "Sauce Labs Bike Light",
+                                              "children": [
+                                                {
+                                                  "role": "generic",
+                                                  "name": "",
+                                                  "children": [
+                                                    {
+                                                      "role": "StaticText",
+                                                      "name": "Sauce Labs Bike Light",
+                                                      "children": [
+                                                        {
+                                                          "role": "InlineTextBox",
+                                                          "name": "Sauce Labs Bike Light",
+                                                          "children": [],
+                                                          "required": false,
+                                                          "disabled": false,
+                                                          "focused": false
+                                                        }
+                                                      ],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    }
+                                                  ],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            },
+                                            {
+                                              "role": "generic",
+                                              "name": "",
+                                              "children": [
+                                                {
+                                                  "role": "StaticText",
+                                                  "name": "A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.",
+                                                  "children": [
+                                                    {
+                                                      "role": "InlineTextBox",
+                                                      "name": "A red light isn't the desired state in testing but it sure helps when riding ",
+                                                      "children": [],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    },
+                                                    {
+                                                      "role": "InlineTextBox",
+                                                      "name": "your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery ",
+                                                      "children": [],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    },
+                                                    {
+                                                      "role": "InlineTextBox",
+                                                      "name": "included.",
+                                                      "children": [],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    }
+                                                  ],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            },
+                                            {
+                                              "role": "none",
+                                              "name": "",
+                                              "children": [
+                                                {
+                                                  "role": "generic",
+                                                  "name": "",
+                                                  "children": [
+                                                    {
+                                                      "role": "StaticText",
+                                                      "name": "$",
+                                                      "children": [
+                                                        {
+                                                          "role": "InlineTextBox",
+                                                          "name": "$",
+                                                          "children": [],
+                                                          "required": false,
+                                                          "disabled": false,
+                                                          "focused": false
+                                                        }
+                                                      ],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    },
+                                                    {
+                                                      "role": "StaticText",
+                                                      "name": "9.99",
+                                                      "children": [
+                                                        {
+                                                          "role": "InlineTextBox",
+                                                          "name": "9.99",
+                                                          "children": [],
+                                                          "required": false,
+                                                          "disabled": false,
+                                                          "focused": false
+                                                        }
+                                                      ],
+                                                      "required": false,
+                                                      "disabled": false,
+                                                      "focused": false
+                                                    }
+                                                  ],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                },
+                                {
+                                  "role": "none",
+                                  "name": "",
+                                  "children": [
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Payment Information:",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Payment Information:",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "SauceCard #31337",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "SauceCard #31337",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Shipping Information:",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Shipping Information:",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Free Pony Express Delivery!",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Free Pony Express Delivery!",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Price Total",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Price Total",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Item total: $",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Item total: $",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "StaticText",
+                                          "name": "39.98",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "39.98",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Tax: $",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Tax: $",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "StaticText",
+                                          "name": "3.20",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "3.20",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "StaticText",
+                                          "name": "Total: $",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "Total: $",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "StaticText",
+                                          "name": "43.18",
+                                          "children": [
+                                            {
+                                              "role": "InlineTextBox",
+                                              "name": "43.18",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    },
+                                    {
+                                      "role": "generic",
+                                      "name": "",
+                                      "children": [
+                                        {
+                                          "role": "button",
+                                          "name": "Go back Cancel",
+                                          "children": [
+                                            {
+                                              "role": "image",
+                                              "name": "Go back",
+                                              "children": [],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            },
+                                            {
+                                              "role": "StaticText",
+                                              "name": "Cancel",
+                                              "children": [
+                                                {
+                                                  "role": "InlineTextBox",
+                                                  "name": "Cancel",
+                                                  "children": [],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        },
+                                        {
+                                          "role": "button",
+                                          "name": "Finish",
+                                          "children": [
+                                            {
+                                              "role": "StaticText",
+                                              "name": "Finish",
+                                              "children": [
+                                                {
+                                                  "role": "InlineTextBox",
+                                                  "name": "Finish",
+                                                  "children": [],
+                                                  "required": false,
+                                                  "disabled": false,
+                                                  "focused": false
+                                                }
+                                              ],
+                                              "required": false,
+                                              "disabled": false,
+                                              "focused": false
+                                            }
+                                          ],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            }
+                          ],
+                          "required": false,
+                          "disabled": false,
+                          "focused": false
+                        }
+                      ],
+                      "required": false,
+                      "disabled": false,
+                      "focused": false
+                    },
+                    {
+                      "role": "contentinfo",
+                      "name": "",
+                      "children": [
+                        {
+                          "role": "list",
+                          "name": "",
+                          "children": [
+                            {
+                              "role": "listitem",
+                              "name": "",
+                              "children": [
+                                {
+                                  "role": "link",
+                                  "name": "Twitter",
+                                  "children": [
+                                    {
+                                      "role": "StaticText",
+                                      "name": "Twitter",
+                                      "children": [
+                                        {
+                                          "role": "InlineTextBox",
+                                          "name": "Twitter",
+                                          "children": [],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            },
+                            {
+                              "role": "listitem",
+                              "name": "",
+                              "children": [
+                                {
+                                  "role": "link",
+                                  "name": "Facebook",
+                                  "children": [
+                                    {
+                                      "role": "StaticText",
+                                      "name": "Facebook",
+                                      "children": [
+                                        {
+                                          "role": "InlineTextBox",
+                                          "name": "Facebook",
+                                          "children": [],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            },
+                            {
+                              "role": "listitem",
+                              "name": "",
+                              "children": [
+                                {
+                                  "role": "link",
+                                  "name": "LinkedIn",
+                                  "children": [
+                                    {
+                                      "role": "StaticText",
+                                      "name": "LinkedIn",
+                                      "children": [
+                                        {
+                                          "role": "InlineTextBox",
+                                          "name": "LinkedIn",
+                                          "children": [],
+                                          "required": false,
+                                          "disabled": false,
+                                          "focused": false
+                                        }
+                                      ],
+                                      "required": false,
+                                      "disabled": false,
+                                      "focused": false
+                                    }
+                                  ],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            }
+                          ],
+                          "required": false,
+                          "disabled": false,
+                          "focused": false
+                        },
+                        {
+                          "role": "generic",
+                          "name": "",
+                          "children": [
+                            {
+                              "role": "StaticText",
+                              "name": "© ",
+                              "children": [
+                                {
+                                  "role": "InlineTextBox",
+                                  "name": "© ",
+                                  "children": [],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            },
+                            {
+                              "role": "StaticText",
+                              "name": "2026",
+                              "children": [
+                                {
+                                  "role": "InlineTextBox",
+                                  "name": "2026",
+                                  "children": [],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            },
+                            {
+                              "role": "StaticText",
+                              "name": " Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+                              "children": [
+                                {
+                                  "role": "InlineTextBox",
+                                  "name": " Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy",
+                                  "children": [],
+                                  "required": false,
+                                  "disabled": false,
+                                  "focused": false
+                                }
+                              ],
+                              "required": false,
+                              "disabled": false,
+                              "focused": false
+                            }
+                          ],
+                          "required": false,
+                          "disabled": false,
+                          "focused": false
+                        }
+                      ],
+                      "required": false,
+                      "disabled": false,
+                      "focused": false
+                    }
+                  ],
+                  "required": false,
+                  "disabled": false,
+                  "focused": false
+                }
+              ],
+              "required": false,
+              "disabled": false,
+              "focused": false
+            }
+          ],
+          "required": false,
+          "disabled": false,
+          "focused": false
+        }
+      ],
+      "required": false,
+      "disabled": false,
+      "focused": false
+    }
+  ],
+  "required": false,
+  "disabled": false,
+  "focused": true
+}

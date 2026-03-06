@@ -1,0 +1,29 @@
+{
+  "errors": [
+    {
+      "timestamp": "2026-03-06T12:46:59.125Z",
+      "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "source": "https://events.backtrace.io/api/unique-events/submit?universe=UNIVERSE&token=TOKEN:0:0",
+      "stack": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    },
+    {
+      "timestamp": "2026-03-06T12:46:59.125Z",
+      "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "source": "https://events.backtrace.io/api/unique-events/submit?universe=UNIVERSE&token=TOKEN:0:0",
+      "stack": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    },
+    {
+      "timestamp": "2026-03-06T12:46:59.245Z",
+      "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "source": "https://events.backtrace.io/api/summed-events/submit?universe=UNIVERSE&token=TOKEN:0:0",
+      "stack": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    },
+    {
+      "timestamp": "2026-03-06T12:46:59.245Z",
+      "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "source": "https://events.backtrace.io/api/summed-events/submit?universe=UNIVERSE&token=TOKEN:0:0",
+      "stack": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    }
+  ],
+  "warnings": []
+}

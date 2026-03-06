@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-cc-captured="2026-03-06T12:46:48.121Z">
+  <head>
+    <meta charset="utf-8">
+  </meta>
+  <link rel="icon" href="/favicon.ico">
+</link>
+<meta name="robots" content="noindex">
+</meta>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</meta>
+<meta name="theme-color" content="#ffffff">
+</meta>
+<meta name="description" content="Sauce Labs Swag Labs app">
+</meta>
+<link rel="apple-touch-icon" href="/icon/icon-192x192.png">
+</link>
+<link rel="manifest" href="/manifest.json">
+</link>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500">
+</link>
+<title>
+  Swag Labs
+</title>
+<link href="/static/css/main.8a7d64a1.css" rel="stylesheet">
+</link>
+</head>
+<body>
+  <noscript>
+  You need to enable JavaScript to run this app.
+</noscript>
+<div id="root">
+  <div class="login_container">
+    <div class="login_logo">
+      Swag Labs
+    </div>
+    <div class="login_wrapper" data-test="login-container">
+      <div class="login_wrapper-inner">
+        <div id="login_button_container" class="form_column">
+          <div class="login-box">
+            <form>
+              <div class="form_group">
+                <input class="input_error form_input" placeholder="Username" type="text" data-test="username" id="user-name" name="user-name" autocorrect="off" autocapitalize="none" value="">
+              </input>
+            </div>
+            <div class="form_group">
+              <input class="input_error form_input" placeholder="Password" type="password" data-test="password" id="password" name="password" autocorrect="off" autocapitalize="none" value="">
+            </input>
+          </div>
+          <div class="error-message-container">
+          </div>
+          <input type="submit" class="submit-button btn_action" data-test="login-button" id="login-button" name="login-button" value="Login">
+        </input>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="login_credentials_wrap" data-test="login-credentials-container">
+  <div class="login_credentials_wrap-inner">
+    <div id="login_credentials" class="login_credentials" data-test="login-credentials">
+      <h4>
+        Accepted usernames are:
+      </h4>
+      standard_user
+      <br>
+    </br>
+    locked_out_user
+    <br>
+  </br>
+  problem_user
+  <br>
+</br>
+performance_glitch_user
+<br>
+</br>
+error_user
+<br>
+</br>
+visual_user
+<br>
+</br>
+</div>
+<div class="login_password" data-test="login-password">
+  <h4>
+    Password for all users:
+  </h4>
+  secret_sauce
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
