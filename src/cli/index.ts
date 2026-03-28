@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Developer: Shadow Coderr, Architect
 
 import { Command } from 'commander';
@@ -8,13 +10,14 @@ import { RuntimeController, RuntimeMode } from '../core/runtime';
 import { loadConfig } from '../config/loader';
 import { isValidUrl } from '../utils/validators';
 import { logger } from '../utils/logger';
+import { getVersion } from '../utils/version';
 
 const program = new Command();
 
 program
   .name('context-graph')
   .description('A deterministic "Flight Data Recorder" for web applications')
-  .version('0.3.0');
+  .version(getVersion());
 
 program
   .argument('[startUrl]', 'Starting URL (optional)')
@@ -115,14 +118,21 @@ program.action(async (startUrl, options) => {
 
     if (finalStartUrl) {
       spinner.text = `Navigating to ${finalStartUrl}...`;
-      await page.goto(finalStartUrl, { waitUntil: 'networkidle' });
-      // Give a moment for any post-load scripts to run
-      await new Promise(r => setTimeout(r, 1000));
-      // Ensure initial page is captured (fallback if events didn't fire)
-      await runtime.capturePageIfNeeded(page);
+      try {
+        await page.goto(finalStartUrl, { waitUntil: 'domcontentloaded' });
+        spinner.succeed(`Navigated to ${finalStartUrl}`);
+        // Give a moment for any post-load scripts to run
+        await new Promise(r => setTimeout(r, 1000));
+        // Ensure initial page is captured (fallback if events didn't fire)
+        await runtime.capturePageIfNeeded(page);
+      } catch (error) {
+        spinner.fail(`Failed to navigate to ${finalStartUrl}`);
+        throw error;
+      }
+    } else {
+      spinner.stop();
     }
 
-    spinner.stop();
     console.log(chalk.green('✓ Browser ready!'));
     console.log(chalk.blue('Navigate through the application. Each page will be captured automatically.'));
     console.log(chalk.yellow('Press Ctrl+C to stop and save all data...'));

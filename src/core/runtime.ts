@@ -1,10 +1,12 @@
 // Developer: Shadow Coderr, Architect
 import { Browser, Page, expect } from '@playwright/test';
+import * as vm from 'vm';
 import { Config } from '../types/config';
 import { BrowserAdapter } from './browser-adapter';
 import { CaptureEngine } from './capture-engine';
 import { StorageEngine } from '../storage/engine';
 import { ComponentsRegistryManager } from '../registry/components-registry';
+import { PageNotifier } from '../analyzers/page-notifier';
 import { generateSessionId } from '../utils/hash';
 import { logger } from '../utils/logger';
 import { spawn } from 'child_process';
@@ -27,6 +29,7 @@ export class RuntimeController {
   private captureEngine: CaptureEngine;
   private storageEngine: StorageEngine;
   private componentsRegistry: ComponentsRegistryManager | null = null;
+  private pageNotifier: PageNotifier;
 
   private sessionId: string;
   private capturedPages: Set<string> = new Set();
@@ -41,6 +44,9 @@ export class RuntimeController {
       config.storage.outputDir,
       config.storage.prettyJson,
       config.capture.forceCapture
+    );
+    this.pageNotifier = new PageNotifier(
+      config.capture.notifications?.enabled ?? true
     );
     this.sessionId = generateSessionId(new Date());
   }
@@ -65,8 +71,25 @@ export class RuntimeController {
   }
 
   async startRecorder(url: string, options: StartRecorderOptions = {}): Promise<void> {
+    // Security: validate URL scheme to prevent javascript:, file:, data: injection
+    // into the child process arguments.
+    const allowedSchemes = ['http:', 'https:'];
+    try {
+      const parsedUrl = new URL(url);
+      if (!allowedSchemes.includes(parsedUrl.protocol)) {
+        throw new Error(
+          `Recorder URL must use http or https scheme. Received: ${parsedUrl.protocol}`
+        );
+      }
+    } catch (e) {
+      if (e instanceof TypeError) {
+        throw new Error(`Invalid recorder URL: ${url}`);
+      }
+      throw e;
+    }
+
     const scriptPath = await this.storageEngine.getUniqueScriptPath(url);
-    
+
     logger.info(`Starting Playwright Codegen for: ${url}`);
     logger.info(`Script will be saved to: ${scriptPath}`);
 
@@ -146,13 +169,38 @@ export class RuntimeController {
   }
 
   private async captureFromRecordedScript(specPath: string): Promise<void> {
+    // Security: validate that the spec file lives inside the controlled scripts
+    // directory. This prevents path traversal attacks (e.g. ../../etc/passwd).
+    const resolvedSpec = path.resolve(specPath);
+    const resolvedScriptsDir = path.resolve(this.storageEngine.getScriptsDir());
+    // Append path.sep so a directory named "scripts-evil" can't match "scripts"
+    const scriptsPrefix = resolvedScriptsDir + path.sep;
+    if (!resolvedSpec.startsWith(scriptsPrefix)) {
+      throw new Error(
+        `Spec file path is outside the controlled scripts directory: ${resolvedSpec}`
+      );
+    }
+
+    // Security: only allow .spec.ts and .spec.js extensions
+    const ext = path.extname(resolvedSpec).toLowerCase();
+    const base = path.basename(resolvedSpec, ext).toLowerCase();
+    if (!base.endsWith('.spec') || (ext !== '.ts' && ext !== '.js')) {
+      throw new Error(
+        `Spec file must have a .spec.ts or .spec.js extension. Received: ${path.basename(resolvedSpec)}`
+      );
+    }
+
+    if (!fs.existsSync(resolvedSpec)) {
+      throw new Error(`Spec file not found: ${resolvedSpec}`);
+    }
+
     const browser = await this.launchBrowser();
     const context = await this.createContext(browser);
     const page = await context.newPage();
 
     await this.setupPage(page);
 
-    await this.executeRecordedSpecSteps(specPath, page);
+    await this.executeRecordedSpecSteps(resolvedSpec, page);
 
     await this.shutdown();
   }
@@ -165,13 +213,48 @@ export class RuntimeController {
       throw new Error(`No executable steps found in script: ${specPath}`);
     }
 
-    const fn = new Function(
-      'page',
-      'expect',
-      `"use strict"; return (async () => {\n${body}\n})();`
-    ) as (page: Page, expect: typeof import('@playwright/test').expect) => Promise<void>;
+    // Security: use vm.Script with an isolated context instead of new Function().
+    //
+    // new Function(body) inherits the full Node.js global scope (require,
+    // process, __dirname, child_process, etc.). vm.createContext() limits the
+    // sandbox to only the symbols listed below — exactly what Playwright test
+    // bodies need and nothing more.
+    //
+    // Note: vm sandboxing in Node is process-level, not OS-level. The
+    // restriction is on accidental global access, not a full security boundary.
+    // Combined with the path validation above, this satisfies the socket.dev
+    // "Dynamic Execution" finding.
+    const sandboxContext = vm.createContext({
+      page,
+      expect,
+      console,
+      setTimeout,
+      clearTimeout,
+      setInterval,
+      clearInterval,
+      Promise,
+      Buffer,
+    });
 
-    await fn(page, expect);
+    const wrappedBody = `(async () => {\n"use strict";\n${body}\n})()`;
+    const script = new vm.Script(wrappedBody, {
+      filename: path.basename(specPath),
+    });
+
+    // vm.Script.runInContext returns the value of the last expression.
+    // For an async IIFE that value is a Promise — await it so errors propagate.
+    // The vm `timeout` option only applies to synchronous execution, so we
+    // implement an independent async timeout via Promise.race.
+    const specTimeoutMs = 120_000;
+    const executionPromise = script.runInContext(sandboxContext) as Promise<void>;
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(
+        () => reject(new Error(`Spec execution timed out after ${specTimeoutMs / 1000}s`)),
+        specTimeoutMs
+      )
+    );
+
+    await Promise.race([executionPromise, timeoutPromise]);
   }
 
   private extractTestBody(specSource: string): string {
@@ -215,7 +298,7 @@ export class RuntimeController {
 
   async createContext(browser: Browser): Promise<any> {
     const context = await this.browserAdapter.createContext(browser, this.config);
-    
+
     // Attach page handler for newly-created pages (popups)
     context.on('page', async (page: any) => {
       await this.setupPage(page);
@@ -232,7 +315,7 @@ export class RuntimeController {
 
   private async setupRecorderMode(page: Page): Promise<void> {
     logger.info('Setting up recorder mode');
-    
+
     // Inject script to capture user interactions
     await page.addInitScript(() => {
       // Store recorded interactions
@@ -240,7 +323,7 @@ export class RuntimeController {
         interactions: [],
         startTime: Date.now()
       };
-      
+
       // Helper to record interactions
       const recordInteraction = (type: string, element: any, data?: any) => {
         const interaction = {
@@ -256,16 +339,16 @@ export class RuntimeController {
           },
           data: data || {}
         };
-        
+
         (window as any).__contextGraph.interactions.push(interaction);
         console.log('ContextGraph: Recorded', type, interaction);
       };
-      
+
       // Helper functions
       const getXPath = (element: any): string => {
         if (element.id) return `//*[@id="${element.id}"]`;
         if (element === document.body) return '/html/body';
-        
+
         let ix = 0;
         const siblings = element.parentNode.childNodes;
         for (let i = 0; i < siblings.length; i++) {
@@ -279,7 +362,7 @@ export class RuntimeController {
         }
         return '';
       };
-      
+
       const getCssSelector = (element: any): string => {
         if (element.id) return `#${element.id}`;
         if (element.className) {
@@ -288,7 +371,7 @@ export class RuntimeController {
         }
         return element.tagName.toLowerCase();
       };
-      
+
       // Record clicks
       document.addEventListener('click', (e) => {
         recordInteraction('click', e.target, {
@@ -298,7 +381,7 @@ export class RuntimeController {
           altKey: e.altKey
         });
       }, true);
-      
+
       // Record form inputs
       document.addEventListener('input', (e) => {
         const target = e.target as HTMLInputElement;
@@ -308,12 +391,12 @@ export class RuntimeController {
           name: target.name
         });
       }, true);
-      
+
       // Record focus changes
       document.addEventListener('focus', (e) => {
         recordInteraction('focus', e.target);
       }, true);
-      
+
       // Record scroll events
       let scrollTimeout: any;
       window.addEventListener('scroll', () => {
@@ -325,7 +408,7 @@ export class RuntimeController {
           });
         }, 100);
       });
-      
+
       // Record navigation
       const originalPushState = history.pushState;
       history.pushState = function(data: any, unused: string, url?: string | URL | null) {
@@ -335,7 +418,7 @@ export class RuntimeController {
         });
         return originalPushState.apply(this, [data, unused, url]);
       };
-      
+
       const originalReplaceState = history.replaceState;
       history.replaceState = function(data: any, unused: string, url?: string | URL | null) {
         recordInteraction('navigation', document.body, {
@@ -344,7 +427,7 @@ export class RuntimeController {
         });
         return originalReplaceState.apply(this, [data, unused, url]);
       };
-      
+
       window.addEventListener('popstate', () => {
         recordInteraction('navigation', document.body, {
           url: location.href,
@@ -352,7 +435,7 @@ export class RuntimeController {
         });
       });
     });
-    
+
     // Set up periodic capture of interactions
     const captureInteractions = async () => {
       try {
@@ -366,10 +449,10 @@ export class RuntimeController {
         logger.debug(`Error capturing interactions: ${(error as Error).message}`);
       }
     };
-    
+
     // Capture interactions every 5 seconds
     const interval = setInterval(captureInteractions, 5000);
-    
+
     // Clean up on page close
     page.on('close', () => {
       clearInterval(interval);
@@ -388,12 +471,19 @@ export class RuntimeController {
       // Attach listeners
       await this.browserAdapter.attachPageListeners(page);
       await this.captureEngine.attachNetworkListeners(page);
-      
+
       // Set up recorder mode if enabled
       if (this.mode === RuntimeMode.RECORDER) {
         await this.setupRecorderMode(page);
       }
-      
+
+      // Inject notification overlay stylesheet (non-fatal)
+      try {
+        await this.pageNotifier.injectStyles(page);
+      } catch (error) {
+        logger.debug(`PageNotifier styles injection failed (non-fatal): ${(error as Error).message}`);
+      }
+
       // Prevent accidental closure using addInitScript instead of evaluateOnNewDocument
       await page.addInitScript(() => {
         window.addEventListener('beforeunload', (e) => {
@@ -472,7 +562,7 @@ export class RuntimeController {
           const origPush = history.pushState;
           history.pushState = function () {
             const ret = origPush.apply(this, arguments as any);
-            try { 
+            try {
               setTimeout(() => {
                 (window as any)['cc_onHistoryChange'] && (window as any)['cc_onHistoryChange'](location.href);
               }, 100);
@@ -482,7 +572,7 @@ export class RuntimeController {
           const origReplace = history.replaceState;
           history.replaceState = function () {
             const ret = origReplace.apply(this, arguments as any);
-            try { 
+            try {
               setTimeout(() => {
                 (window as any)['cc_onHistoryChange'] && (window as any)['cc_onHistoryChange'](location.href);
               }, 100);
@@ -490,7 +580,7 @@ export class RuntimeController {
             return ret;
           };
           window.addEventListener('popstate', function () {
-            try { 
+            try {
               setTimeout(() => {
                 (window as any)['cc_onHistoryChange'] && (window as any)['cc_onHistoryChange'](location.href);
               }, 100);
@@ -509,7 +599,7 @@ export class RuntimeController {
       // Sort query params for consistent comparison
       const sortedParams = Array.from(u.searchParams.entries())
         .sort((a, b) => a[0].localeCompare(b[0]));
-      const queryString = sortedParams.length > 0 
+      const queryString = sortedParams.length > 0
         ? '?' + sortedParams.map(([k, v]) => `${k}=${v}`).join('&')
         : '';
       // Fix: Include hash so SPAs (e.g., /#/dashboard) are treated as unique pages
@@ -524,7 +614,11 @@ export class RuntimeController {
       const maxAttempts = 3;
       let attempt = 0;
       const startingUrl = page.url();
-      
+
+      // Show processing indicator immediately (non-fatal if it fails)
+      await this.pageNotifier.show(page, 'processing').catch(() => {});
+      let captureSucceeded = false;
+
       while (attempt < maxAttempts) {
         attempt++;
         try {
@@ -556,10 +650,10 @@ export class RuntimeController {
 
           const currentUrl = page.url();
           logger.info(`Capturing page (attempt ${attempt}/${maxAttempts}): ${currentUrl}`);
-          
+
           const consoleMessages = this.browserAdapter.getConsoleMessages();
-          
-          const snapshot = await this.captureEngine.capturePageSnapshot(page, this.config, consoleMessages);
+
+          const snapshot = await this.captureEngine.capturePageSnapshot(page, this.config, consoleMessages, this.storageEngine['outputDir']);
           await this.storageEngine.savePageSnapshot(snapshot);
 
           // Update components registry
@@ -570,7 +664,7 @@ export class RuntimeController {
             }
             await this.componentsRegistry.processPage(snapshot);
           }
-          
+
           this.browserAdapter.clearConsoleMessages();
 
           await this.storageEngine.updateGlobalManifest({
@@ -584,26 +678,34 @@ export class RuntimeController {
           });
 
           logger.info(`✓ Successfully captured page: ${snapshot.metadata.url} (saved as: ${snapshot.metadata.pageName})`);
-          break; 
+          captureSucceeded = true;
+          break;
         } catch (error) {
           const msg = (error as Error).message || '';
           logger.warn(`Capture attempt ${attempt} failed: ${msg}`);
-          
+
           // Check for fatal browser closure errors - don't retry these
           if (/Target page, context or browser has been closed|Execution context was destroyed|Navigation cancelled/i.test(msg)) {
             logger.warn(`Capture aborted due to navigation/page close: ${msg}`);
             break; // don't retry these
           }
-          
+
           // For other errors, retry if we haven't exhausted attempts
           if (attempt < maxAttempts) {
             await new Promise((r) => setTimeout(r, 300));
             continue;
           }
-          
+
           logger.error(`Failed to capture page: ${error}`);
           break;
         }
+      }
+
+      // Update notification state based on capture outcome (non-fatal)
+      if (captureSucceeded) {
+        await this.pageNotifier.show(page, 'success', { autoDismissMs: 4000 }).catch(() => {});
+      } else {
+        await this.pageNotifier.show(page, 'error').catch(() => {});
       }
     })();
 
@@ -626,7 +728,7 @@ export class RuntimeController {
 
   async shutdown(): Promise<void> {
     try {
-      const timeout = new Promise((_, reject) => 
+      const timeout = new Promise((_, reject) =>
         setTimeout(() => reject(new Error('Shutdown timeout')), 20000)
       );
       await Promise.race([
@@ -678,16 +780,16 @@ export class RuntimeController {
     try {
       const url = page.url();
       const key = this.normalizeUrl(url);
-      
+
       if (!this.capturedPages.has(key) && this.isValidUrl(url)) {
         logger.info(`New page detected: ${url}`);
-        
+
         // Ensure page is stable before capturing
         await page.waitForLoadState('domcontentloaded');
         await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {
           logger.debug('Network idle state not reached, continuing with capture...');
         });
-        
+
         await this.captureCurrentPage(page);
       }
     } catch (error) {

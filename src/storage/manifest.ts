@@ -2,6 +2,7 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { GlobalManifest, ManifestEntry } from '../types/storage';
+import { getVersion } from '../utils/version';
 
 export class ManifestManager {
   private manifestPath: string;
@@ -53,7 +54,7 @@ export class ManifestManager {
 
   private createEmptyManifest(): GlobalManifest {
     return {
-      version: '0.3.0',
+      version: getVersion(),
       createdAt: new Date().toISOString(),
       lastUpdated: new Date().toISOString(),
       sessions: [],
@@ -64,8 +65,8 @@ export class ManifestManager {
         totalPages: 0,
         totalNetworkRequests: 0,
         totalScreenshots: 0,
-        storageSize: '0 MB',
-      },
+        storageSize: '0 KB'
+      }
     };
   }
 }

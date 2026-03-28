@@ -1,159 +1,333 @@
 // Developer: Shadow Coderr, Architect
 import { Page } from '@playwright/test';
 import { AccessibilityTree } from '../types/capture';
+import { logger } from '../utils/logger';
 
+/**
+ * AccessibilityExtractor — captures the full accessibility tree using three
+ * strategies in order of reliability:
+ *
+ * 1. Playwright's built-in accessibility.snapshot() — the most reliable,
+ *    cross-browser approach.  Configured with interestingOnly: false so every
+ *    node is returned, not just "interesting" leaf nodes.
+ *
+ * 2. Chrome DevTools Protocol (CDP) Accessibility.getFullAXTree — lower-level
+ *    but gives raw browser data when Playwright's API is unavailable.
+ *
+ * 3. DOM-based construction — pure JavaScript executed inside the page.
+ *    Works in every environment but misses computed ARIA states.
+ */
 export class AccessibilityExtractor {
-  async extract(page: Page, _includeHidden: boolean = false): Promise<AccessibilityTree> {
+  async extract(page: Page, includeHidden: boolean = false): Promise<AccessibilityTree> {
+    // ── Strategy 1: Playwright accessibility.snapshot() ──────────────────────
     try {
-      // Wait for page to be ready
       await page.waitForLoadState('domcontentloaded', { timeout: 5000 }).catch(() => {});
-      
-      // Try to get accessibility snapshot via CDP
-      let snapshot: any = null;
-      
-      try {
-        // Use CDP (Chrome DevTools Protocol) for accessibility snapshot
-        const client = await (page.context() as any).newCDPSession(page);
-        snapshot = await client.send('Accessibility.getFullAXTree');
-        
-        if (snapshot && snapshot.nodes && snapshot.nodes.length > 0) {
-          // Transform CDP format to our format
-          return this.transformCDPSnapshot(snapshot.nodes[0], snapshot.nodes);
-        }
-      } catch (cdpError) {
-        // CDP not available, fall through to DOM-based approach
-      }
 
-      // Fallback: build accessibility tree from DOM
-      snapshot = await this.buildFromDOM(page);
-      return this.transformSnapshot(snapshot);
-    } catch (error) {
-      // Final fallback: build from DOM
-      try {
-        const domSnapshot = await this.buildFromDOM(page);
-        return this.transformSnapshot(domSnapshot);
-      } catch (domError) {
-        // Ultimate fallback
-        return {
-          role: 'WebArea',
-          name: await page.title().catch(() => ''),
-          children: [],
-        };
+      // `interestingOnly: false` returns every node; set to true for compact trees
+      const snapshot = await (page as any).accessibility.snapshot({
+        interestingOnly: !includeHidden,
+      });
+
+      if (snapshot) {
+        logger.debug('A11y: using Playwright snapshot strategy');
+        return this.transformPlaywrightSnapshot(snapshot);
       }
+    } catch (e) {
+      logger.debug(`A11y Playwright strategy failed: ${(e as Error).message}`);
     }
+
+    // ── Strategy 2: CDP Accessibility.getFullAXTree ───────────────────────────
+    try {
+      const client = await (page.context() as any).newCDPSession(page);
+      const result = await client.send('Accessibility.getFullAXTree');
+      await client.detach().catch(() => {});
+
+      if (result?.nodes?.length) {
+        logger.debug('A11y: using CDP strategy');
+        return this.transformCDPSnapshot(result.nodes[0], result.nodes);
+      }
+    } catch (e) {
+      logger.debug(`A11y CDP strategy failed: ${(e as Error).message}`);
+    }
+
+    // ── Strategy 3: DOM-based fallback ────────────────────────────────────────
+    try {
+      const domResult = await this.buildFromDOM(page, includeHidden);
+      logger.debug('A11y: using DOM fallback strategy');
+      return this.transformSnapshot(domResult);
+    } catch (e) {
+      logger.warn(`A11y DOM strategy failed: ${(e as Error).message}`);
+    }
+
+    // ── Ultimate fallback ─────────────────────────────────────────────────────
+    logger.warn('A11y: all strategies failed, returning minimal tree');
+    return {
+      role: 'WebArea',
+      name: await page.title().catch(() => ''),
+      children: [],
+    };
   }
 
-  /**
-   * Transform CDP accessibility tree format to our format
-   */
+  // ── Playwright snapshot transformation ──────────────────────────────────────
+
+  private transformPlaywrightSnapshot(node: any): AccessibilityTree {
+    const result: AccessibilityTree = {
+      role: node.role || 'generic',
+      name: node.name || '',
+      children: Array.isArray(node.children)
+        ? node.children.map((c: any) => this.transformPlaywrightSnapshot(c))
+        : [],
+    };
+
+    if (node.value !== undefined && node.value !== null) result.value = String(node.value);
+    if (typeof node.required === 'boolean') result.required = node.required;
+    if (typeof node.disabled === 'boolean') result.disabled = node.disabled;
+    if (typeof node.focused === 'boolean') result.focused = node.focused;
+    if (typeof node.multiline === 'boolean') result.multiline = node.multiline;
+    if (node.checked !== undefined) result.checked = node.checked;
+    if (node.pressed !== undefined) result.pressed = node.pressed;
+    if (typeof node.selected === 'boolean') result.selected = node.selected;
+    if (typeof node.expanded === 'boolean') result.expanded = node.expanded;
+    if (typeof node.level === 'number') result.level = node.level;
+
+    return result;
+  }
+
+  // ── CDP snapshot transformation ──────────────────────────────────────────────
+
   private transformCDPSnapshot(rootNode: any, allNodes: any[]): AccessibilityTree {
+    const nodeMap = new Map<string, any>();
+    for (const n of allNodes) nodeMap.set(n.nodeId, n);
+
     const buildNode = (node: any): AccessibilityTree => {
       const children: AccessibilityTree[] = [];
-      
-      if (node.childIds && node.childIds.length > 0) {
+
+      if (Array.isArray(node.childIds)) {
         for (const childId of node.childIds) {
-          const childNode = allNodes.find((n: any) => n.nodeId === childId);
-          if (childNode) {
-            children.push(buildNode(childNode));
-          }
+          const childNode = nodeMap.get(childId);
+          if (childNode) children.push(buildNode(childNode));
         }
       }
-      
+
+      const getProp = (name: string) =>
+        node.properties?.find((p: any) => p.name === name)?.value?.value;
+
       const result: AccessibilityTree = {
-        role: node.role?.value || 'unknown',
+        role: node.role?.value || 'generic',
         name: node.name?.value || '',
-        children: children.length > 0 ? children : [],
-        value: node.value?.value,
-        required: node.properties?.find((p: any) => p.name === 'required')?.value?.value === true,
-        disabled: node.properties?.find((p: any) => p.name === 'disabled')?.value?.value === true,
-        focused: node.properties?.find((p: any) => p.name === 'focused')?.value?.value === true,
+        children,
       };
-      
-      // Add optional properties only if they exist
-      const checked = node.properties?.find((p: any) => p.name === 'checked')?.value?.value;
+
+      if (node.value?.value !== undefined) result.value = String(node.value.value);
+
+      const required = getProp('required');
+      if (required !== undefined) result.required = required === true;
+
+      const disabled = getProp('disabled');
+      if (disabled !== undefined) result.disabled = disabled === true;
+
+      const focused = getProp('focused');
+      if (focused !== undefined) result.focused = focused === true;
+
+      const checked = getProp('checked');
       if (checked !== undefined) result.checked = checked;
-      
-      const pressed = node.properties?.find((p: any) => p.name === 'pressed')?.value?.value;
+
+      const pressed = getProp('pressed');
       if (pressed !== undefined) result.pressed = pressed;
-      
-      const selected = node.properties?.find((p: any) => p.name === 'selected')?.value?.value;
-      if (selected !== undefined) result.selected = selected;
-      
-      const expanded = node.properties?.find((p: any) => p.name === 'expanded')?.value?.value;
-      if (expanded !== undefined) result.expanded = expanded;
-      
+
+      const selected = getProp('selected');
+      if (selected !== undefined) result.selected = selected === true;
+
+      const expanded = getProp('expanded');
+      if (expanded !== undefined) result.expanded = expanded === true;
+
       return result;
     };
-    
+
     return buildNode(rootNode);
   }
 
+  // ── DOM-based fallback ───────────────────────────────────────────────────────
+
   /**
-   * Build accessibility tree from DOM when Playwright accessibility API is unavailable
+   * Build an accessibility tree by traversing the live DOM inside the page.
+   * This approach works universally but misses computed ARIA states and
+   * relationships that only the accessibility engine can resolve.
    */
-  private async buildFromDOM(page: Page): Promise<any> {
-    return await page.evaluate(() => {
-      const buildA11yNode = (element: Element): any => {
-        const role = element.getAttribute('role') || 
-                    (element.tagName === 'BUTTON' ? 'button' :
-                     element.tagName === 'INPUT' ? 'textbox' :
-                     element.tagName === 'A' ? 'link' :
-                     element.tagName === 'FORM' ? 'form' :
-                     element.tagName === 'HEADER' ? 'banner' :
-                     element.tagName === 'NAV' ? 'navigation' :
-                     element.tagName === 'MAIN' ? 'main' :
-                     element.tagName === 'FOOTER' ? 'contentinfo' : 'generic');
-        
-        const name = element.getAttribute('aria-label') ||
-                    element.getAttribute('aria-labelledby') ||
-                    (element as HTMLElement).innerText?.trim() ||
-                    element.getAttribute('alt') ||
-                    element.getAttribute('title') ||
-                    '';
-        
+  private async buildFromDOM(page: Page, includeHidden: boolean): Promise<any> {
+    return await page.evaluate((opts: { includeHidden: boolean }) => {
+      const ROLE_MAP: Record<string, string> = {
+        BUTTON: 'button',
+        INPUT: 'textbox',   // refined below
+        TEXTAREA: 'textbox',
+        SELECT: 'combobox',
+        A: 'link',
+        IMG: 'img',
+        FORM: 'form',
+        NAV: 'navigation',
+        HEADER: 'banner',
+        FOOTER: 'contentinfo',
+        MAIN: 'main',
+        ASIDE: 'complementary',
+        SECTION: 'region',
+        ARTICLE: 'article',
+        DIALOG: 'dialog',
+        TABLE: 'table',
+        UL: 'list',
+        OL: 'list',
+        LI: 'listitem',
+        H1: 'heading', H2: 'heading', H3: 'heading',
+        H4: 'heading', H5: 'heading', H6: 'heading',
+        DETAILS: 'group',
+        SUMMARY: 'button',
+      };
+
+      const INPUT_ROLE_MAP: Record<string, string> = {
+        checkbox: 'checkbox',
+        radio: 'radio',
+        submit: 'button',
+        button: 'button',
+        reset: 'button',
+        range: 'slider',
+        search: 'searchbox',
+        number: 'spinbutton',
+        image: 'button',
+      };
+
+      function getRole(el: Element): string {
+        const explicit = el.getAttribute('role');
+        if (explicit) return explicit;
+
+        const tag = el.tagName.toUpperCase();
+
+        if (tag === 'INPUT') {
+          const type = (el as HTMLInputElement).type?.toLowerCase() || 'text';
+          return INPUT_ROLE_MAP[type] || 'textbox';
+        }
+
+        if (tag === 'A') {
+          return (el as HTMLAnchorElement).href ? 'link' : 'generic';
+        }
+
+        if (/^H[1-6]$/.test(tag)) return 'heading';
+
+        return ROLE_MAP[tag] || 'generic';
+      }
+
+      function getAccessibleName(el: Element): string {
+        // 1. aria-labelledby
+        const labelledBy = el.getAttribute('aria-labelledby');
+        if (labelledBy) {
+          const ids = labelledBy.split(/\s+/);
+          const texts = ids.map(id => document.getElementById(id)?.textContent?.trim()).filter(Boolean);
+          if (texts.length) return texts.join(' ');
+        }
+
+        // 2. aria-label
+        const ariaLabel = el.getAttribute('aria-label');
+        if (ariaLabel) return ariaLabel.trim();
+
+        // 3. For img/input, alt or title
+        const alt = el.getAttribute('alt');
+        if (alt) return alt.trim();
+
+        const placeholder = el.getAttribute('placeholder');
+        if (placeholder) return placeholder.trim();
+
+        // 4. For labeled inputs
+        const id = el.id;
+        if (id) {
+          const label = document.querySelector(`label[for="${id}"]`);
+          if (label) return label.textContent?.trim() || '';
+        }
+
+        // 5. Text content (limited)
+        const text = (el as HTMLElement).innerText?.trim();
+        if (text) return text.substring(0, 200);
+
+        // 6. title attribute
+        const title = el.getAttribute('title');
+        if (title) return title.trim();
+
+        return '';
+      }
+
+      function isHidden(el: Element): boolean {
+        if (!opts.includeHidden) {
+          const style = window.getComputedStyle(el);
+          if (style.display === 'none' || style.visibility === 'hidden') return true;
+          if (el.getAttribute('aria-hidden') === 'true') return true;
+        }
+        return false;
+      }
+
+      function buildNode(el: Element): any | null {
+        if (isHidden(el)) return null;
+
+        const role = getRole(el);
+        const name = getAccessibleName(el);
         const children: any[] = [];
-        for (let i = 0; i < element.children.length; i++) {
-          const child = buildA11yNode(element.children[i]);
+
+        for (let i = 0; i < el.children.length; i++) {
+          const child = buildNode(el.children[i]);
           if (child) children.push(child);
         }
-        
-        const result: any = {
-          role,
-          name: name.substring(0, 100), // Limit name length
-          children: children.length > 0 ? children : [],
-          disabled: element.hasAttribute('disabled'),
-          required: element.hasAttribute('required'),
-        };
-        
-        const checked = (element as HTMLInputElement).checked;
-        if (checked) result.checked = checked;
-        
-        const expanded = element.getAttribute('aria-expanded') === 'true';
-        if (expanded) result.expanded = expanded;
-        
-        return result;
-      };
-      
-      return buildA11yNode(document.documentElement);
-    });
+
+        const node: any = { role, name, children };
+
+        // Computed states
+        const inputEl = el as HTMLInputElement;
+        if (el.hasAttribute('disabled') || inputEl.disabled) node.disabled = true;
+        if (el.hasAttribute('required') || inputEl.required) node.required = true;
+        if (inputEl.checked !== undefined && (inputEl.type === 'checkbox' || inputEl.type === 'radio')) {
+          node.checked = inputEl.checked;
+        }
+        const expanded = el.getAttribute('aria-expanded');
+        if (expanded !== null) node.expanded = expanded === 'true';
+
+        const selected = el.getAttribute('aria-selected');
+        if (selected !== null) node.selected = selected === 'true';
+
+        const level = el.getAttribute('aria-level');
+        if (level !== null) node.level = parseInt(level, 10);
+        else if (/^H([1-6])$/.test(el.tagName)) {
+          node.level = parseInt(el.tagName[1], 10);
+        }
+
+        const value = (el as HTMLInputElement).value;
+        if (value !== undefined && value !== '' && inputEl.type !== 'password') {
+          node.value = value;
+        }
+
+        return node;
+      }
+
+      return buildNode(document.documentElement);
+    }, { includeHidden });
   }
 
-  private transformSnapshot(snapshot: any): AccessibilityTree {
+  // ── Generic snapshot transformer ────────────────────────────────────────────
+
+  private transformSnapshot(node: any): AccessibilityTree {
+    if (!node) return { role: 'generic', name: '', children: [] };
+
     return {
-      role: snapshot.role || 'unknown',
-      name: snapshot.name || '',
-      children: snapshot.children ? snapshot.children.map((child: any) => this.transformSnapshot(child)) : [],
-      value: snapshot.value,
-      required: snapshot.required,
-      disabled: snapshot.disabled,
-      focused: snapshot.focused,
-      multiline: snapshot.multiline,
-      protected: snapshot.protected,
-      checked: snapshot.checked,
-      pressed: snapshot.pressed,
-      selected: snapshot.selected,
-      expanded: snapshot.expanded,
-      level: snapshot.level,
+      role: node.role || 'generic',
+      name: node.name || '',
+      children: Array.isArray(node.children)
+        ? node.children.map((c: any) => this.transformSnapshot(c))
+        : [],
+      value: node.value,
+      required: node.required,
+      disabled: node.disabled,
+      focused: node.focused,
+      multiline: node.multiline,
+      protected: node.protected,
+      checked: node.checked,
+      pressed: node.pressed,
+      selected: node.selected,
+      expanded: node.expanded,
+      level: node.level,
     };
   }
 }

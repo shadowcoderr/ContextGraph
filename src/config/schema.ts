@@ -16,9 +16,8 @@ export const CONFIG_SCHEMA = {
           required: ['width', 'height'],
         },
         slowMo: { type: 'number' },
-        devtools: { type: 'boolean' },
       },
-      required: ['channel', 'headless', 'viewport', 'slowMo', 'devtools'],
+      required: ['channel', 'headless', 'viewport', 'slowMo'],
     },
     capture: {
       type: 'object',
@@ -61,6 +60,12 @@ export const CONFIG_SCHEMA = {
             enabled: { type: 'boolean' },
             minOccurrences: { type: 'number' },
             maxComponents: { type: 'number' },
+          },
+        },
+        notifications: {
+          type: 'object',
+          properties: {
+            enabled: { type: 'boolean' },
           },
         },
         forceCapture: { type: 'boolean' },

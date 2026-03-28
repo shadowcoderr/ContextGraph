@@ -10,7 +10,6 @@ export const DEFAULT_CONFIG: Config = {
       height: 1080,
     },
     slowMo: 0,
-    devtools: false,
   },
   capture: {
     screenshots: {
@@ -37,6 +36,9 @@ export const DEFAULT_CONFIG: Config = {
       enabled: true,
       minOccurrences: 1,
       maxComponents: 1000,
+    },
+    notifications: {
+      enabled: true,
     },
     forceCapture: false,
   },

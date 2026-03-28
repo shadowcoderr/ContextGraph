@@ -28,9 +28,7 @@ export class BrowserAdapter {
     const launchOptions: any = {
       headless: config.browser.headless,
       slowMo: config.browser.slowMo,
-      devtools: config.browser.devtools,
       args: [
-        '--start-maximized',
         '--disable-extensions',
         '--disable-popup-blocking',
         '--disable-notifications',
@@ -69,12 +67,7 @@ export class BrowserAdapter {
   }
 
   async createContext(browser: Browser, config?: any): Promise<BrowserContext> {
-    // Check if --start-maximized is being used
-    const isMaximized = true; // Since we're always using --start-maximized in launchOptions
-    
     const contextOptions: any = {
-      // Disable fixed viewport to allow window sizing when maximized
-      viewport: isMaximized ? null : (config?.viewport || null),
       isMobile: false,
       hasTouch: false,
       javaScriptEnabled: true,
@@ -82,12 +75,11 @@ export class BrowserAdapter {
       ignoreHTTPSErrors: true,
       bypassCSP: true,
       userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      // Keep the browser process alive
       closeBrowserOnContextClose: false,
     };
-    
-    // Only set viewport if explicitly provided in config AND not using --start-maximized
-    if (config?.viewport && !isMaximized) {
+
+    // Always set viewport to ensure proper page sizing
+    if (config?.viewport) {
       contextOptions.viewport = {
         width: config.viewport.width,
         height: config.viewport.height,

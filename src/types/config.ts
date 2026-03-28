@@ -7,7 +7,6 @@ export interface BrowserConfig {
     height: number;
   };
   slowMo: number;
-  devtools: boolean;
 }
 
 export interface LocatorConfig {
@@ -21,6 +20,10 @@ export interface ComponentsConfig {
   enabled: boolean;                    // Enable/disable components registry
   minOccurrences: number;              // Minimum occurrences to be considered a pattern
   maxComponents: number;              // Maximum components to track
+}
+
+export interface NotificationsConfig {
+  enabled: boolean;                    // Show in-page overlay during capture operations
 }
 
 export interface CaptureConfig {
@@ -40,6 +43,7 @@ export interface CaptureConfig {
   };
   locators: LocatorConfig;
   components: ComponentsConfig;
+  notifications: NotificationsConfig;
   forceCapture: boolean;              // Always capture even if content hash unchanged
 }
 
