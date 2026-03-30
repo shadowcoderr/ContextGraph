@@ -1,6 +1,6 @@
 {
   "name": "@shadowcoderr/context-graph",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "A deterministic 'Flight Data Recorder' for web applications that transforms manual exploration into structured, AI-ready intelligence.",
   "main": "dist/cli/index.js",
   "bin": {
