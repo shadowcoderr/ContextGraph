@@ -8,8 +8,8 @@ import ora from 'ora';
 import inquirer from 'inquirer';
 import { RuntimeController, RuntimeMode } from '../core/runtime';
 import { loadConfig } from '../config/loader';
-import { isValidUrl } from '../utils/validators';
-import { logger } from '../utils/logger';
+import { isValidUrl, normalizeUrl } from '../utils/validators';
+import { logger, LogLevel } from '../utils/logger';
 import { getVersion } from '../utils/version';
 
 const program = new Command();
@@ -29,21 +29,23 @@ program
   .option('--headless', 'Run in headless mode', false)
   .option('--no-screenshots', 'Disable screenshot capture')
   .option('--no-network', 'Disable network logging')
-  .option('--recorder-capture', 'In recorder mode, replay the recorded script to capture full artifacts (DOM/a11y/locators/network/screenshots)', false)
-  .option('--verbose', 'Enable verbose logging', false);
+  .option('--recorder-capture', 'In recorder mode, replay the recorded script to capture full artifacts', false)
+  .option('--verbose', 'Enable verbose debug logging', false);
 
 program.action(async (startUrl, options) => {
-  // Handle unhandled rejections
-  process.on('unhandledRejection', (reason, promise) => {
-    logger.error(`Unhandled Rejection at:${promise}, reason:${reason}`);
+  // Enable verbose logging when requested — otherwise WARN is default
+  if (options.verbose) {
+    logger.level = LogLevel.DEBUG;
+  }
+
+  process.on('unhandledRejection', (reason) => {
+    logger.error(`Unhandled rejection: ${reason}`);
   });
 
   try {
-    // Load configuration
     const configPath = options.config;
     let config = await loadConfig(configPath);
 
-    // Override config with CLI options
     if (options.output) config.storage.outputDir = options.output;
     if (options.headless) config.browser.headless = true;
     if (options.viewport) {
@@ -52,9 +54,8 @@ program.action(async (startUrl, options) => {
     }
     if (options.noScreenshots) config.capture.screenshots.enabled = false;
     if (options.noNetwork) config.capture.network.enabled = false;
-    if (options.verbose) logger.level = 0; // DEBUG
 
-    // Validate mode or ask for it
+    // Mode selection
     let mode: RuntimeMode;
     if (options.mode && ['browser', 'recorder'].includes(options.mode)) {
       mode = options.mode as RuntimeMode;
@@ -73,97 +74,131 @@ program.action(async (startUrl, options) => {
       mode = modeAnswers.mode as RuntimeMode;
     }
 
-    // Determine start URL (CLI option takes precedence, then positional arg)
-    let finalStartUrl = options.url || startUrl;
-    if (finalStartUrl && !isValidUrl(finalStartUrl)) {
-      throw new Error(`Invalid URL: ${finalStartUrl}`);
-    }
+    // Resolve URL — accept both bare hostnames and full URLs
+    let finalStartUrl: string | undefined;
+    const rawUrl = options.url || startUrl;
 
-    // If no URL provided, ask for it
-    if (!finalStartUrl) {
+    if (rawUrl) {
+      finalStartUrl = normalizeUrl(rawUrl);
+      if (!isValidUrl(finalStartUrl)) {
+        throw new Error(`Invalid URL: ${rawUrl}`);
+      }
+    } else {
       const answers = await inquirer.prompt([
         {
           type: 'input',
           name: 'url',
           message: 'Enter starting URL:',
-          validate: (input) => isValidUrl(input) || 'Please enter a valid URL',
+          validate: (input: string) => {
+            if (!input.trim()) return 'URL is required';
+            const normalised = normalizeUrl(input.trim());
+            return isValidUrl(normalised) ||
+              'Please enter a valid URL — e.g. saucedemo.com or https://example.com';
+          },
         },
       ]);
-      finalStartUrl = answers.url;
+      finalStartUrl = normalizeUrl(answers.url.trim());
     }
 
-    // Initialize runtime
-    const spinner = ora('Initializing...').start();
+    const spinner = ora('Initializing ContextGraph...').start();
     const runtime = new RuntimeController(config, mode);
     await runtime.initialize();
 
-    // Branch based on mode
+    /**
+     * Shared shutdown handler.
+     * Called when: browser window closed, Ctrl+C pressed, SIGTERM received.
+     * Saves data, generates AI bundle + API inventory, then exits.
+     */
+    let isShuttingDown = false;
+    const shutdown = async (triggeredByBrowserClose = false) => {
+      if (isShuttingDown) return;
+      isShuttingDown = true;
+
+      if (triggeredByBrowserClose) {
+        console.log('\n' + chalk.yellow('Browser closed — saving captured data...'));
+      } else {
+        console.log('\n' + chalk.yellow('Shutting down gracefully...'));
+      }
+
+      // 1. Wait for any in-flight captures to complete
+      try {
+        await runtime.shutdown();
+        console.log(chalk.green('✓ Page data saved'));
+      } catch (err) {
+        console.error(chalk.red(`Shutdown error: ${(err as Error).message}`));
+      }
+
+      // 2. Auto-generate AI context bundle (single-file LLM export)
+      try {
+        const { AIContextBundler } = await import('../exporters/ai-context-bundler');
+        const bundler = new AIContextBundler(config.storage.outputDir);
+        const bundlePath = await bundler.bundle();
+        console.log(chalk.green(`✓ AI context bundle:  ${bundlePath}`));
+      } catch (bundleErr) {
+        // Non-fatal — may fail on very short sessions with no captured pages
+        logger.warn(`AI bundle skipped: ${(bundleErr as Error).message}`);
+      }
+
+      // 3. Auto-generate API inventory from captured network traffic
+      try {
+        const { NetworkPatternAnalyzer } = await import('../analyzers/network-patterns');
+        const analyzer = new NetworkPatternAnalyzer(config.storage.outputDir);
+        const inventoryPath = await analyzer.analyze();
+        console.log(chalk.green(`✓ API inventory:      ${inventoryPath}`));
+      } catch (inventoryErr) {
+        logger.warn(`API inventory skipped: ${(inventoryErr as Error).message}`);
+      }
+
+      console.log(chalk.blue(`\nOutput: ${config.storage.outputDir}`));
+
+      setTimeout(() => process.exit(0), 200);
+    };
+
+    // Recorder mode
     if (mode === RuntimeMode.RECORDER) {
-      // Recorder mode - start Playwright codegen
       spinner.succeed('Runtime initialized');
       await runtime.startRecorder(finalStartUrl, { captureArtifacts: Boolean(options.recorderCapture) });
+      await shutdown();
       return;
     }
 
-    // Browser mode - proceed with existing logic
-    // Launch browser
+    // Browser mode
     spinner.text = 'Launching browser...';
     const browser = await runtime.launchBrowser();
     const context = await runtime.createContext(browser);
 
-    // Create page and navigate
     spinner.text = 'Setting up page...';
     const page = await context.newPage();
     await runtime.setupPage(page);
 
-    if (finalStartUrl) {
-      spinner.text = `Navigating to ${finalStartUrl}...`;
-      try {
-        await page.goto(finalStartUrl, { waitUntil: 'domcontentloaded' });
-        spinner.succeed(`Navigated to ${finalStartUrl}`);
-        // Give a moment for any post-load scripts to run
-        await new Promise(r => setTimeout(r, 1000));
-        // Ensure initial page is captured (fallback if events didn't fire)
-        await runtime.capturePageIfNeeded(page);
-      } catch (error) {
-        spinner.fail(`Failed to navigate to ${finalStartUrl}`);
-        throw error;
-      }
-    } else {
-      spinner.stop();
+    spinner.text = `Navigating to ${finalStartUrl}...`;
+    try {
+      await page.goto(finalStartUrl, { waitUntil: 'domcontentloaded' });
+      spinner.succeed(`Navigated to ${finalStartUrl}`);
+      await new Promise(r => setTimeout(r, 1000));
+      await runtime.capturePageIfNeeded(page);
+    } catch (error) {
+      spinner.fail(`Failed to navigate to ${finalStartUrl}`);
+      throw error;
     }
 
-    console.log(chalk.green('✓ Browser ready!'));
-    console.log(chalk.blue('Navigate through the application. Each page will be captured automatically.'));
-    console.log(chalk.yellow('Press Ctrl+C to stop and save all data...'));
+    console.log(chalk.green('\n✓ Browser ready!'));
+    console.log(chalk.blue('Navigate freely — every page you visit is captured automatically.'));
+    console.log(chalk.yellow('Close the browser window (or press Ctrl+C) when done.\n'));
 
-    // Handle browser close event
-    let isShuttingDown = false;
-    const shutdown = async () => {
-      if (isShuttingDown) return;
-      isShuttingDown = true;
-      try {
-        console.log('\n' + chalk.yellow('Shutting down gracefully...'));
-        await runtime.shutdown();
-        console.log(chalk.green('✓ All data saved!'));
-        console.log(chalk.blue(`View manifest: ${config.storage.outputDir}/global_manifest.json`));
-        setTimeout(() => process.exit(0), 100);
-      } catch (error) {
-        const err = error as Error;
-        console.error(chalk.red(`Error during shutdown: ${err.message}`));
-        setTimeout(() => process.exit(1), 100);
-      }
-    };
+    // Browser close → auto-exit
+    runtime.onBrowserDisconnect(async () => {
+      await shutdown(true);
+    });
 
-    // Listen for browser disconnect
-    runtime.onBrowserDisconnect(shutdown);
-
-    // Wait for user to finish
-    process.on('SIGINT', shutdown);
+    // Ctrl+C / kill signal → auto-exit
+    process.on('SIGINT', async () => { await shutdown(false); });
+    process.on('SIGTERM', async () => { await shutdown(false); });
 
   } catch (error) {
     const err = error as Error;
     console.error(chalk.red(`Error: ${err.message}`));
+    if (options.verbose) console.error(err.stack);
     process.exit(1);
   }
 });

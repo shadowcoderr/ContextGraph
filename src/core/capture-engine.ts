@@ -1,5 +1,6 @@
 // Developer: Shadow Coderr, Architect
 import * as crypto from 'crypto';
+import * as path from 'path';
 import { Page } from '@playwright/test';
 import { Config } from '../types/config';
 import { PageSnapshot } from '../types/capture';
@@ -47,9 +48,9 @@ export class CaptureEngine {
    * @param page            — Playwright Page instance
    * @param config          — Active configuration
    * @param consoleMessages — Console messages buffered by BrowserAdapter
-   * @param pageDir         — If provided, full-page screenshots are captured here.
-   *                          The caller is responsible for ensuring the directory
-   *                          exists before passing this parameter.
+   * @param outputDir       — Root output directory (e.g. ./context-graph-output).
+   *                          Screenshots are written to the page-specific sub-directory
+   *                          computed from the URL, not directly to this path.
    */
   async capturePageSnapshot(
     page: Page,
@@ -62,40 +63,50 @@ export class CaptureEngine {
       width: config.browser.viewport.width,
       height: config.browser.viewport.height,
     });
-    logger.info('Starting page capture');
+    logger.info('CaptureEngine: starting page capture');
 
     const url = page.url();
     const timestamp = new Date();
     const domain = new URL(url).hostname;
 
+    // Compute page-specific directory so screenshots land next to the other
+    // page files (…/pages/<pageName>/screenshots/) rather than in the root.
+    const pageName = this.generatePageName(url);
+    const domainName = this.extractDomainName(domain);
+    const pageSpecificDir = path.join(outputDir, domainName, 'pages', pageName);
+
     const CAPTURE_TIMEOUT = 45_000;
 
     const captureWithTimeout = async <T>(
       promise: Promise<T>,
-      name: string
+      name: string,
     ): Promise<T | null> => {
       try {
         return await Promise.race([
           promise,
           new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error(`${name} capture timed out`)), CAPTURE_TIMEOUT)
+            setTimeout(
+              () => reject(new Error(`${name} capture timed out after ${CAPTURE_TIMEOUT / 1000}s`)),
+              CAPTURE_TIMEOUT,
+            ),
           ),
         ]);
       } catch (error) {
-        logger.warn(`${name} capture failed: ${(error as Error).message}`);
+        logger.warn(`CaptureEngine: ${name} capture failed — ${(error as Error).message}`);
         return null;
       }
     };
 
-    // ── Primary captures (run in parallel) ─────────────────────────────────────
+    // ── Primary captures (run in parallel) ─────────────────────────────────
     const [domResult, a11yTree, locators, performanceMetrics] = await Promise.all([
       captureWithTimeout(this.domAnalyzer.analyze(page), 'DOM'),
       config.capture.accessibility.enabled
         ? captureWithTimeout(
             this.a11yExtractor.extract(page, config.capture.accessibility.includeHidden),
-            'A11y'
+            'A11y',
           )
         : Promise.resolve(null),
+      // Locator generation: up to 60 s on complex pages with many testid checks
       captureWithTimeout(this.locatorGenerator.generateLocators(page), 'Locators'),
       captureWithTimeout(this.domAnalyzer.getPerformanceMetrics(page), 'Performance'),
     ]);
@@ -103,12 +114,12 @@ export class CaptureEngine {
     const frameContents = domResult?.frames || [];
     const frames = await captureWithTimeout(
       this.getFrameHierarchy(page, frameContents),
-      'Frames'
+      'Frames',
     );
 
     const networkEvents = this.networkLogger.getEvents();
 
-    // ── Secondary captures ─────────────────────────────────────────────────────
+    // ── Secondary captures ─────────────────────────────────────────────────
     const [pageState, networkSummary, enhancedTiming] = await Promise.all([
       captureWithTimeout(this.capturePageState(page), 'PageState'),
       captureWithTimeout(this.captureNetworkSummary(networkEvents), 'NetworkSummary'),
@@ -134,11 +145,15 @@ export class CaptureEngine {
         networkIdle: Date.now(),
       },
       performance: performanceMetrics || {
-        domNodes: 0, scripts: 0, stylesheets: 0, images: 0, totalRequests: 0,
+        domNodes: 0,
+        scripts: 0,
+        stylesheets: 0,
+        images: 0,
+        totalRequests: 0,
       },
       userAgent: await page.evaluate(() => navigator.userAgent).catch(() => ''),
       cookies: '[REDACTED]',
-      pageName: this.generatePageName(url),
+      pageName,
       pageState: pageState || undefined,
       networkSummary: networkSummary || undefined,
       contentHash: '',
@@ -146,25 +161,25 @@ export class CaptureEngine {
 
     const enhancedLocators = await captureWithTimeout(
       this.enhanceLocatorsData(page, locators || { elements: [] }),
-      'EnhancedLocators'
+      'EnhancedLocators',
     );
 
     const snapshot: PageSnapshot = {
       metadata,
       domSnapshot: domResult?.html || '<html></html>',
       a11yTree: a11yTree || { role: 'unknown', name: '', children: [] },
-      locators: enhancedLocators || { elements: [] },
+      locators: enhancedLocators || locators || { elements: [] },
       frames: frames || { url, name: '', children: [] },
       networkEvents,
       consoleMessages,
       screenshotPaths: [],
     };
 
-    // ── Content hash (structural fingerprint) ───────────────────────────────────
+    // ── Content hash (structural fingerprint) ───────────────────────────────
     snapshot.metadata.contentHash = this.computeContentHash(snapshot);
 
-    // ── Screenshots (only if caller provided a page directory) ─────────────────
-    if (config.capture.screenshots.enabled && outputDir) {
+    // ── Screenshots (written to the page-specific directory) ────────────────
+    if (config.capture.screenshots.enabled) {
       try {
         const elementTargets = config.capture.screenshots.elementTargeting
           ? ScreenshotCapturer.buildElementTargets(snapshot.locators.elements || [])
@@ -173,33 +188,37 @@ export class CaptureEngine {
         const screenshotResult = await captureWithTimeout(
           this.screenshotCapturer.capturePageScreenshots(
             page,
-            outputDir,
+            pageSpecificDir,       // ← page-specific dir, not root outputDir
             snapshot.metadata.captureId,
-            elementTargets
+            elementTargets,
           ),
-          'Screenshots'
+          'Screenshots',
         );
 
         if (screenshotResult?.fullPagePath) {
           snapshot.screenshotPaths = [screenshotResult.fullPagePath];
           if (screenshotResult.elementPaths.length > 0) {
             snapshot.screenshotPaths.push(
-              ...screenshotResult.elementPaths.map(e => e.path)
+              ...screenshotResult.elementPaths.map((e) => e.path),
             );
           }
         }
       } catch (error) {
-        logger.warn(`Screenshot capture failed: ${(error as Error).message}`);
+        logger.warn(`CaptureEngine: screenshot capture failed — ${(error as Error).message}`);
       }
     }
 
-    // ── Validation ─────────────────────────────────────────────────────────────
+    // ── Validation ─────────────────────────────────────────────────────────
     const validation = this.validator.validatePageSnapshot(snapshot);
-    if (!validation.valid) logger.warn(`Validation errors: ${validation.errors.join(', ')}`);
+    if (!validation.valid)
+      logger.warn(`CaptureEngine: validation errors: ${validation.errors.join(', ')}`);
     if (validation.warnings.length > 0)
-      logger.warn(`Validation warnings: ${validation.warnings.join(', ')}`);
+      logger.warn(`CaptureEngine: validation warnings: ${validation.warnings.join(', ')}`);
 
-    logger.info('Page capture completed');
+    logger.info(
+      `CaptureEngine: capture complete — ${snapshot.locators.elements.length} locators, ` +
+      `${snapshot.screenshotPaths.length} screenshots`,
+    );
     return snapshot;
   }
 
@@ -207,13 +226,13 @@ export class CaptureEngine {
 
   private async getFrameHierarchy(
     page: Page,
-    frameContents: Array<{ url: string; name: string; content: string }> = []
+    frameContents: Array<{ url: string; name: string; content: string }> = [],
   ): Promise<any> {
     const frames = page.frames();
 
     const buildHierarchy = (frame: any): any => {
       const contentEntry = frameContents.find(
-        f => f.url === frame.url() && f.name === frame.name()
+        (f) => f.url === frame.url() && f.name === frame.name(),
       );
       return {
         url: frame.url(),
@@ -228,46 +247,29 @@ export class CaptureEngine {
 
   // ── Content hash ────────────────────────────────────────────────────────────
 
-  /**
-   * Compute a structural fingerprint of the page for change detection.
-   *
-   * Instead of truncating the raw HTML at 5 000 chars (which causes SPAs with
-   * large identical `<head>` sections to hash identically across routes), we
-   * extract a token stream of `tagName[#id][@role]` from the DOM.  This is
-   * order-sensitive, compact, and captures the semantic structure without
-   * being affected by text-content changes that don't alter layout.
-   */
   private computeContentHash(snapshot: PageSnapshot): string {
     try {
       const hashContent = {
         domStructure: this.normalizeDomForHash(snapshot.domSnapshot),
         a11yStructure: this.normalizeA11yForHash(snapshot.a11yTree),
-        locatorSignatures: (snapshot.locators.elements || []).map(e => ({
+        locatorSignatures: (snapshot.locators.elements || []).map((e) => ({
           id: e.elementId,
           tag: e.tagName,
           role: e.attributes?.role,
           testId: e.attributes?.['data-testid'],
           text: e.text?.substring(0, 50),
-          uniqueStrategies: e.locators.filter(l => l.isUnique).map(l => l.strategy),
+          uniqueStrategies: e.locators.filter((l) => l.isUnique).map((l) => l.strategy),
         })),
       };
 
       const hashString = JSON.stringify(hashContent);
       return crypto.createHash('sha256').update(hashString).digest('hex').substring(0, 16);
     } catch (error) {
-      logger.warn(`Failed to compute content hash: ${(error as Error).message}`);
+      logger.warn(`CaptureEngine: content hash failed — ${(error as Error).message}`);
       return '';
     }
   }
 
-  /**
-   * Extract a structural token stream from HTML rather than truncating text.
-   * Produces strings like `div#app@main|button|input@textbox` — semantically
-   * rich but immune to text-content noise and `<head>` boilerplate.
-   *
-   * Up to 500 tokens are extracted to bound memory usage while covering
-   * enough of the page to reliably detect structural changes.
-   */
   private normalizeDomForHash(dom: string): string {
     const tagPattern = /<([a-z][a-z0-9]*)[^>]*?(?:\sid="([^"]*)")?[^>]*?(?:\srole="([^"]*)")?[^>]*/gi;
     const tokens: string[] = [];
@@ -294,9 +296,9 @@ export class CaptureEngine {
     };
   }
 
-  // ── Page name ───────────────────────────────────────────────────────────────
+  // ── Page name generation ────────────────────────────────────────────────────
 
-  private generatePageName(url: string): string {
+  generatePageName(url: string): string {
     try {
       const u = new URL(url);
       const pathname = u.pathname.replace(/\/+$/, '');
@@ -309,7 +311,7 @@ export class CaptureEngine {
       }
 
       const params = Array.from(u.searchParams.entries()).sort((a, b) =>
-        a[0].localeCompare(b[0])
+        a[0].localeCompare(b[0]),
       );
 
       if (params.length > 0) {
@@ -324,18 +326,28 @@ export class CaptureEngine {
       }
 
       const sanitized = this.sanitizeName(pageName) || 'page';
-      
-      // Limit length to avoid ENOENT on long URLs (Windows limit is 260, but let's be safe with folder names)
+
       if (sanitized.length > 100) {
         const hash = crypto.createHash('md5').update(sanitized).digest('hex').substring(0, 8);
-        return sanitized.substring(0, 90) + '-' + hash;
+        return `${sanitized.substring(0, 90)}-${hash}`;
       }
-      
+
       return sanitized;
     } catch (error) {
-      logger.warn(`Failed to generate page name from URL: ${url}`);
+      logger.warn(`CaptureEngine: failed to generate page name from URL: ${url}`);
       return 'page-' + crypto.randomBytes(4).toString('hex');
     }
+  }
+
+  /**
+   * Mirrors the domain-name extraction in StorageEngine so the screenshot
+   * directory matches the domain directory created by StorageEngine.
+   */
+  private extractDomainName(domain: string): string {
+    const parts = domain.split('.');
+    const filtered = parts.filter((p) => p.toLowerCase() !== 'www');
+    if (filtered.length >= 2) return filtered[filtered.length - 2];
+    return filtered[0] || parts[0];
   }
 
   private sanitizeName(name: string): string {
@@ -381,7 +393,7 @@ export class CaptureEngine {
             const k = window.localStorage.key(i);
             if (k) localStorageKeys[k] = '[REDACTED]';
           }
-        } catch { /* private browsing / security */ }
+        } catch { /* private browsing */ }
 
         const sessionStorageKeys: Record<string, string> = {};
         try {
@@ -389,19 +401,21 @@ export class CaptureEngine {
             const k = window.sessionStorage.key(i);
             if (k) sessionStorageKeys[k] = '[REDACTED]';
           }
-        } catch { /* private browsing / security */ }
+        } catch { /* private browsing */ }
 
         return {
           scrollPosition: { x: window.scrollX, y: window.scrollY },
           focusedElement,
           selectedText,
           formData: Object.keys(formData).length > 0 ? formData : undefined,
-          localStorage: Object.keys(localStorageKeys).length > 0 ? localStorageKeys : undefined,
-          sessionStorage: Object.keys(sessionStorageKeys).length > 0 ? sessionStorageKeys : undefined,
+          localStorage:
+            Object.keys(localStorageKeys).length > 0 ? localStorageKeys : undefined,
+          sessionStorage:
+            Object.keys(sessionStorageKeys).length > 0 ? sessionStorageKeys : undefined,
         };
       });
     } catch (error) {
-      logger.warn('Failed to capture page state: ' + (error as Error).message);
+      logger.warn(`CaptureEngine: page state failed — ${(error as Error).message}`);
       return null;
     }
   }
@@ -441,7 +455,7 @@ export class CaptureEngine {
         apiEndpoints: apiEndpoints.slice(0, 20),
       };
     } catch (error) {
-      logger.warn('Failed to capture network summary: ' + (error as Error).message);
+      logger.warn(`CaptureEngine: network summary failed — ${(error as Error).message}`);
       return null;
     }
   }
@@ -471,7 +485,7 @@ export class CaptureEngine {
         };
       });
     } catch (error) {
-      logger.warn('Failed to capture enhanced timing: ' + (error as Error).message);
+      logger.warn(`CaptureEngine: timing failed — ${(error as Error).message}`);
       return null;
     }
   }
@@ -479,6 +493,8 @@ export class CaptureEngine {
   // ── Locator enhancement ─────────────────────────────────────────────────────
 
   private async enhanceLocatorsData(page: Page, locatorsData: any): Promise<any> {
+    if (!locatorsData?.elements?.length) return locatorsData;
+
     try {
       const elementMap = new Map<string, string>();
 
@@ -506,9 +522,10 @@ export class CaptureEngine {
               .evaluate(
                 ({ sel, pos }: { sel: string; pos: any }) => {
                   let el: Element | null = null;
-                  try { el = document.querySelector(sel); } catch { /* invalid selector */ }
+                  try {
+                    el = document.querySelector(sel);
+                  } catch { /* invalid selector */ }
 
-                  // Positional fallback when selector fails (e.g. complex CSS)
                   if (!el && pos?.x >= 0 && pos?.y >= 0) {
                     el = document.elementFromPoint(pos.x + 1, pos.y + 1);
                   }
@@ -520,8 +537,10 @@ export class CaptureEngine {
                   const inViewport =
                     rect.top >= 0 &&
                     rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+                    rect.bottom <=
+                      (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <=
+                      (window.innerWidth || document.documentElement.clientWidth);
 
                   return {
                     styles: {
@@ -540,11 +559,17 @@ export class CaptureEngine {
                       fontWeight: computed.fontWeight,
                     },
                     viewportInfo: {
-                      visible: rect.width > 0 && rect.height > 0 && computed.visibility !== 'hidden' && computed.display !== 'none',
+                      visible:
+                        rect.width > 0 &&
+                        rect.height > 0 &&
+                        computed.visibility !== 'hidden' &&
+                        computed.display !== 'none',
                       inViewport,
-                      viewportPosition: { x: Math.round(rect.left), y: Math.round(rect.top) },
+                      viewportPosition: {
+                        x: Math.round(rect.left),
+                        y: Math.round(rect.top),
+                      },
                     },
-                    // Update bounding box with fresh data
                     position: {
                       x: Math.round(rect.left),
                       y: Math.round(rect.top),
@@ -553,7 +578,7 @@ export class CaptureEngine {
                     },
                   };
                 },
-                { sel: selector, pos: element.position }
+                { sel: selector, pos: element.position },
               )
               .catch(() => null);
 
@@ -562,7 +587,6 @@ export class CaptureEngine {
                 ...element,
                 styles: enhancement.styles,
                 viewportInfo: enhancement.viewportInfo,
-                // Overwrite stale position data with fresh bounding box
                 position: enhancement.position ?? element.position,
                 computedState: {
                   ...element.computedState,
@@ -574,7 +598,7 @@ export class CaptureEngine {
           } catch {
             return element;
           }
-        })
+        }),
       );
 
       const viewportElements = enhancedElements
@@ -586,7 +610,10 @@ export class CaptureEngine {
           viewportPosition: el.viewportInfo.viewportPosition,
         }));
 
-      const formFields = await this.captureFormFieldDetails(page, locatorsData.elements);
+      const formFields = await this.captureFormFieldDetails(
+        page,
+        locatorsData.elements,
+      );
 
       return {
         elements: enhancedElements,
@@ -594,12 +621,15 @@ export class CaptureEngine {
         formFields: formFields.length > 0 ? formFields : undefined,
       };
     } catch (error) {
-      logger.warn('Failed to enhance locators data: ' + (error as Error).message);
+      logger.warn(`CaptureEngine: locator enhancement failed — ${(error as Error).message}`);
       return locatorsData;
     }
   }
 
-  private async captureFormFieldDetails(page: Page, elements: any[]): Promise<any[]> {
+  private async captureFormFieldDetails(
+    page: Page,
+    elements: any[],
+  ): Promise<any[]> {
     const formFields: any[] = [];
 
     for (const element of elements) {
@@ -645,14 +675,14 @@ export class CaptureEngine {
                     : undefined,
               };
             },
-            { sel: selector, tag: tagName }
+            { sel: selector, tag: tagName },
           )
           .catch(() => null);
 
         if (details) {
           formFields.push({ elementId: element.elementId, ...details });
         }
-      } catch { /* skip this element */ }
+      } catch { /* skip */ }
     }
 
     return formFields;
@@ -664,7 +694,6 @@ export class CaptureEngine {
     return this.redactor.getAuditLog();
   }
 
-  /** Network event count — passed to StorageEngine for statistics */
   getNetworkEventCount(): number {
     return this.networkLogger.getRequestCount();
   }

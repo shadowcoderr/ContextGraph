@@ -12,7 +12,7 @@ export class Logger {
   private logLevel: LogLevel;
   private logFile: string | undefined;
 
-  constructor(logLevel: LogLevel = LogLevel.INFO, logFile?: string) {
+  constructor(logLevel: LogLevel = LogLevel.WARN, logFile?: string) {
     this.logLevel = logLevel;
     this.logFile = logFile;
   }
@@ -48,13 +48,23 @@ export class Logger {
     const levelStr = LogLevel[level];
     const formattedMessage = `[${timestamp}] ${levelStr}: ${message}`;
 
-    console.log(formattedMessage, ...args);
+    if (level >= LogLevel.ERROR) {
+      console.error(formattedMessage, ...args);
+    } else {
+      console.log(formattedMessage, ...args);
+    }
 
     if (this.logFile) {
       const logEntry = `${formattedMessage} ${args.length ? JSON.stringify(args) : ''}\n`;
-      fs.appendFileSync(this.logFile, logEntry);
+      try {
+        fs.appendFileSync(this.logFile, logEntry);
+      } catch {
+        // ignore log file write errors silently
+      }
     }
   }
 }
 
-export const logger = new Logger();
+// Default WARN level — only warnings and errors shown in production.
+// Set to LogLevel.DEBUG via --verbose flag for development output.
+export const logger = new Logger(LogLevel.WARN);

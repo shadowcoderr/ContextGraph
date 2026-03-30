@@ -1,8 +1,28 @@
 // Developer: Shadow Coderr, Architect
+
+/**
+ * Normalise a raw user-entered URL.
+ * Accepts "https://example.com", "http://example.com", and bare "example.com".
+ * Always returns a string with an explicit https:// prefix.
+ */
+export function normalizeUrl(input: string): string {
+  if (!input) return input;
+  const trimmed = input.trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
+/**
+ * Returns true when the string is a syntactically valid http/https URL.
+ * Bare hostnames (e.g. "saucedemo.com") are accepted — they are normalised
+ * to https:// internally before parsing.
+ */
 export function isValidUrl(url: string): boolean {
+  if (!url || typeof url !== 'string') return false;
   try {
-    new URL(url);
-    return true;
+    const normalised = normalizeUrl(url);
+    const parsed = new URL(normalised);
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
   } catch {
     return false;
   }

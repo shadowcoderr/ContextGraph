@@ -2,8 +2,6 @@
 
 <br />
 
-<img width="80" height="80" src="https://raw.githubusercontent.com/shadowcoderr/ContextGraph/main/.github/assets/logo.svg" alt="ContextGraph logo" onerror="this.style.display='none'" />
-
 # ContextGraph
 
 **The deterministic "Flight Data Recorder" for web applications**
@@ -40,6 +38,8 @@ In enterprise environments, MCP and cloud-based recording tools are frequently b
 Your Browser Session  →  ContextGraph  →  Structured Output  →  AI Agent  →  Generated Tests
 
 ```
+
+**How to use the output:** Add the `context-graph-output/` folder to your IDE workspace. Once indexed, you can reference any captured page, locator, API endpoint, or accessibility tree directly in your AI prompts — treating the output as an offline knowledge base. Your AI agent can now "see" your application's UI/UX structure without needing live browser access or MCP integration.
 
 > **Zero cloud. Zero telemetry. Zero MCP required.** Everything stays inside your enterprise perimeter.
 
@@ -117,12 +117,11 @@ context-graph --mode browser --url https://your-app.com
 # Press Ctrl+C when done
 ```
 
-### Generate an AI Context Bundle
+### Use the AI Context Bundle
 
 ```bash
-# After capture, bundle everything into one LLM-ready file
-context-graph --export-bundle
-
+# The bundle is automatically generated when you close the browser!
+# Find it at:
 # → context-graph-output/bundles/ai_context_bundle.md
 ```
 
@@ -196,16 +195,15 @@ context-graph-output/
 
 ## 🤖 AI Integration
 
-### The 3-Step Workflow
+### The 2-Step Workflow
 
 ```bash
 # 1. Capture your application (you drive, ContextGraph records)
 context-graph --mode browser --url https://app.example.com
+# Close the browser when done — bundle auto-generates!
 
-# 2. Bundle everything for your AI agent
-context-graph --export-bundle
-
-# 3. Open your AI IDE, paste the bundle, and ask for tests
+# 2. Open your AI IDE, paste the bundle, and ask for tests
+# Bundle location: context-graph-output/bundles/ai_context_bundle.md
 ```
 
 ### Example Prompt (after pasting the bundle)
@@ -376,8 +374,7 @@ Options:
   --no-screenshots          Disable screenshot capture
   --no-network              Disable network logging
   --recorder-capture        (Recorder) Replay script to capture full artifacts
-  --export-bundle           Generate AI context bundle after capture
-  --force-capture           Re-capture already-visited pages
+  --verbose                 Enable debug logging
   --verbose                 Enable debug logging
   --version                 Show version
   --help                    Show help
@@ -416,8 +413,9 @@ Every redaction event is logged to `logs/redaction_audit.jsonl` for compliance r
 
 ```bash
 context-graph --mode browser --url https://app.example.com
-context-graph --export-bundle
-# → Paste ai_context_bundle.md into Copilot Chat → get .spec.ts tests
+# Close browser when done — bundle auto-generates at:
+# context-graph-output/bundles/ai_context_bundle.md
+# → Paste into Copilot Chat → get .spec.ts tests
 ```
 
 ### Pattern B — Regression Detection Between Releases
