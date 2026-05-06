@@ -20,19 +20,21 @@ program
   .version(getVersion());
 
 program
-  .argument('[startUrl]', 'Starting URL (optional)')
-  .option('-m, --mode <type>', 'Operating mode (browser|recorder)', 'browser')
+  .argument('[arg1]', 'Starting URL or mode (browser|recorder)')
+  .argument('[arg2]', 'Starting URL when arg1 is mode')
+  .option('-m, --mode <type>', 'Operating mode (browser|recorder)')
   .option('-u, --url <url>', 'Starting URL (optional)')
   .option('-o, --output <path>', 'Output directory', './context-graph-output')
   .option('-c, --config <path>', 'Custom config file path')
   .option('-v, --viewport <WxH>', 'Viewport size (default: 1920x1080)', '1920x1080')
+  .option('--slow-mo <ms>', 'Slow motion delay in ms')
   .option('--headless', 'Run in headless mode', false)
   .option('--no-screenshots', 'Disable screenshot capture')
   .option('--no-network', 'Disable network logging')
   .option('--recorder-capture', 'In recorder mode, replay the recorded script to capture full artifacts', false)
   .option('--verbose', 'Enable verbose debug logging', false);
 
-program.action(async (startUrl, options) => {
+program.action(async (arg1, arg2, options) => {
   // Enable verbose logging when requested — otherwise WARN is default
   if (options.verbose) {
     logger.level = LogLevel.DEBUG;
@@ -52,12 +54,22 @@ program.action(async (startUrl, options) => {
       const [width, height] = options.viewport.split('x').map(Number);
       config.browser.viewport = { width, height };
     }
+    if (options.slowMo !== undefined) config.browser.slowMo = Number(options.slowMo);
     if (options.noScreenshots) config.capture.screenshots.enabled = false;
     if (options.noNetwork) config.capture.network.enabled = false;
 
+    // Backward-compatible positional args support:
+    //   context-graph browser https://example.com
+    //   context-graph https://example.com
+    const positionalMode = typeof arg1 === 'string' && ['browser', 'recorder'].includes(arg1)
+      ? (arg1 as RuntimeMode)
+      : undefined;
+
     // Mode selection
     let mode: RuntimeMode;
-    if (options.mode && ['browser', 'recorder'].includes(options.mode)) {
+    if (positionalMode) {
+      mode = positionalMode;
+    } else if (options.mode && ['browser', 'recorder'].includes(options.mode)) {
       mode = options.mode as RuntimeMode;
     } else {
       const modeAnswers = await inquirer.prompt([
@@ -76,7 +88,8 @@ program.action(async (startUrl, options) => {
 
     // Resolve URL — accept both bare hostnames and full URLs
     let finalStartUrl: string | undefined;
-    const rawUrl = options.url || startUrl;
+    const positionalUrl = positionalMode ? arg2 : arg1;
+    const rawUrl = options.url || positionalUrl;
 
     if (rawUrl) {
       finalStartUrl = normalizeUrl(rawUrl);

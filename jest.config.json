@@ -6,7 +6,8 @@
     "<rootDir>/src"
   ],
   "testMatch": [
-    "**/tests/unit/**/*.test.ts"
+    "**/tests/unit/**/*.test.ts",
+    "**/tests/integration/**/*.test.ts"
   ],
   "moduleFileExtensions": [
     "ts",

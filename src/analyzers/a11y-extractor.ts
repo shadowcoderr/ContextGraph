@@ -215,6 +215,15 @@ export class AccessibilityExtractor {
       }
 
       function getAccessibleName(el: Element): string {
+        try {
+          const fn = (window as any).getComputedAccessibleNode;
+          if (typeof fn === 'function') {
+            const axNode = fn(el as any);
+            const computed = axNode?.name?.trim?.();
+            if (computed) return computed;
+          }
+        } catch { /* optional API */ }
+
         // 1. aria-labelledby
         const labelledBy = el.getAttribute('aria-labelledby');
         if (labelledBy) {

@@ -58,11 +58,8 @@ export class CaptureEngine {
     consoleMessages: any[] = [],
     outputDir: string,
   ): Promise<PageSnapshot> {
-    // Ensure proper viewport is set before capture
-    await page.setViewportSize({
-      width: config.browser.viewport.width,
-      height: config.browser.viewport.height,
-    });
+    // Do not mutate viewport here; capture should reflect the page exactly as
+    // currently rendered in the active browser context/session.
     logger.info('CaptureEngine: starting page capture');
 
     const url = page.url();
@@ -137,7 +134,10 @@ export class CaptureEngine {
       url,
       domain,
       title: await page.title().catch(() => ''),
-      viewport: { ...config.browser.viewport, deviceScaleFactor: 1 },
+      viewport: {
+        ...(page.viewportSize() || config.browser.viewport),
+        deviceScaleFactor: 1,
+      },
       timing: enhancedTiming || {
         navigationStart: Date.now() - 1000,
         domContentLoaded: Date.now() - 500,

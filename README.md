@@ -365,19 +365,17 @@ context-graph [startUrl] [options]
 
 Options:
   -m, --mode <type>         browser | recorder            (required)
-  -u, --url <url>           Starting URL
-  -o, --output <path>       Output directory               [default: ./context-graph-output]
-  -c, --config <path>       Config file path
-  -v, --viewport <WxH>      Viewport size                  [default: 1920x1080]
-  --headless                Run headless (no visible browser)
-  --slow-mo <ms>            Slow motion delay in ms
-  --no-screenshots          Disable screenshot capture
-  --no-network              Disable network logging
-  --recorder-capture        (Recorder) Replay script to capture full artifacts
-  --verbose                 Enable debug logging
-  --verbose                 Enable debug logging
-  --version                 Show version
-  --help                    Show help
+  -u, --url <url>           Starting URL                  (If not provided by user, will be prompted)
+  -o, --output <path>       Output directory              (Optional) [default: ./context-graph-output]
+  -c, --config <path>       Config file path              (Optional)  
+  -v, --viewport <WxH>      Viewport size                 (Optional) [default: 1920x1080]
+  --slow-mo <ms>            Slow motion delay in ms       (Optional)
+  --no-screenshots          Disable screenshot capture    (Optional)
+  --no-network              Disable network logging       (Optional)
+  --recorder-capture        (Recorder) Replay script to capture full artifacts (Optional)
+  --verbose                 Enable debug logging          (Optional)
+  --version                 Show version                  (Optional)
+  --help                    Show help                     (Optional)
 ```
 
 ---
@@ -468,35 +466,6 @@ npm run build
 # Run in dev mode
 npm run dev -- --mode browser --url https://example.com
 
-# Unit tests (Jest)
-npm test
-
-# Integration tests (Playwright)
-npm run test:playwright
-
-# Lint
-npm run lint
-```
-
-### Module Status
-
-| Module | Status | Notes |
-|---|---|---|
-| CLI | ✅ Stable | Interactive wizard + full CLI flags |
-| Browser Mode | ✅ Stable | Auto-capture on navigation + SPA history API |
-| Recorder Mode | ✅ Stable | Codegen integration + artifact replay |
-| DOM Analyzer | ✅ Stable | Script removal + Shadow DOM serialisation |
-| A11y Extractor | ✅ Stable | 3-strategy: Playwright → CDP → DOM |
-| Locator Generator | ✅ Stable | 6-strategy ranking + uniqueness checks |
-| Network Logger | ✅ Stable | WeakMap timing, requestfailed, captureBody |
-| Screenshot Capturer | ✅ Stable | Full-page + element-level screenshots |
-| Security Redactor | ✅ Stable | 8 patterns + URL query param redaction |
-| AI Context Bundler | ✅ Stable | Single-file Markdown/JSON LLM export |
-| Network Pattern Analyzer | ✅ Stable | API inventory with path normalisation |
-| Components Registry | ✅ Stable | Cross-page pattern indexing |
-| Shadow DOM Support | 🔄 Partial | Top-level serialisation included |
-| Multi-browser | 🔜 Planned | Edge + Chromium; Firefox beta |
-
 ---
 
 ## 📖 Documentation
@@ -532,3 +501,14 @@ MIT © [Shadow Coderr](https://github.com/shadowcoderr)
 *ContextGraph gives your AI the eyes it was missing.*
 
 </div>
+
+## Locator Ranking Policy (v1)
+
+ContextGraph now applies a unified ranking policy for best locator selection:
+1. getByRole(role, { name })
+2. getByTestId()
+3. getByLabel()
+4. getByText()/getByPlaceholder()/getByAltText()/getByTitle()
+5. CSS fallback
+
+Locator candidates include deterministic score, score reasons, and volatility metadata.

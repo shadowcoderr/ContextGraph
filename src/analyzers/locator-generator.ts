@@ -2,6 +2,8 @@
 import { Page } from '@playwright/test';
 import { ElementLocator, Locator, LocatorsData } from '../types/capture';
 import { logger } from '../utils/logger';
+import * as path from 'path';
+import { scoreLocator, volatilityForLocator } from './locator-policy';
 
 /**
  * Raw element data extracted from the DOM via a single page.evaluate() call.
@@ -41,6 +43,20 @@ interface RawElement {
  * verified in a second, batched evaluate() rather than N individual
  * locator.count() calls.
  */
+
+
+async function ensureDomAccessibilityApi(page: Page): Promise<void> {
+  try {
+    const anyWindow = await page.evaluate(() => Boolean((window as any).DomAccessibilityApi));
+    if (anyWindow) return;
+
+    const umdPath = require.resolve('dom-accessibility-api/dist/index.umd.js');
+    await page.addScriptTag({ path: path.resolve(umdPath) });
+    logger.debug('LocatorGenerator: injected dom-accessibility-api');
+  } catch (error) {
+    logger.debug(`LocatorGenerator: dom-accessibility-api unavailable (${(error as Error).message})`);
+  }
+}
 export class LocatorGenerator {
   async generateLocators(page: Page): Promise<LocatorsData> {
     logger.info('LocatorGenerator: starting locator generation');
@@ -51,6 +67,8 @@ export class LocatorGenerator {
     } catch {
       logger.debug('LocatorGenerator: network-idle timeout, continuing');
     }
+
+    await ensureDomAccessibilityApi(page);
 
     // ── Step 1: Single DOM scan ─────────────────────────────────────────────
     let rawElements: RawElement[] = [];
@@ -80,6 +98,7 @@ export class LocatorGenerator {
 
     // ── Step 3: Batch uniqueness verification ───────────────────────────────
     await batchVerifyUniqueness(page, elementLocators);
+    applyLocatorScores(elementLocators);
 
     logger.info(`LocatorGenerator: generated locators for ${elementLocators.length} elements`);
     return { elements: elementLocators };
@@ -136,6 +155,21 @@ function domScanScript(): RawElement[] {
   }
 
   function getAccessibleName(el: Element): string {
+    try {
+      const domA11y = (window as any).DomAccessibilityApi;
+      const viaLibrary = domA11y?.computeAccessibleName?.(el);
+      if (typeof viaLibrary === 'string' && viaLibrary.trim()) return viaLibrary.trim();
+    } catch { /* optional library */ }
+
+    try {
+      const fn = (window as any).getComputedAccessibleNode;
+      if (typeof fn === 'function') {
+        const axNode = fn(el as any);
+        const computed = axNode?.name?.trim?.();
+        if (computed) return computed;
+      }
+    } catch { /* optional API */ }
+
     const ariaLabel = el.getAttribute('aria-label');
     if (ariaLabel?.trim()) return ariaLabel.trim();
 
@@ -365,6 +399,10 @@ function escapeStr(s: string): string {
   return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
 
+function semanticMeta(role: string, name?: string): { role?: string; accessibleName?: string } {
+  return name ? { role, accessibleName: name } : { role };
+}
+
 function buildElementLocator(raw: RawElement, index: number): ElementLocator | null {
   try {
     const locators = buildLocatorStrategies(raw);
@@ -409,6 +447,7 @@ function buildLocatorStrategies(raw: RawElement): Locator[] {
       resilience: 90,
       matchCount: 0,
       isUnique: false,
+      semantic: semanticMeta(raw.role, accessible),
     });
   }
 
@@ -423,6 +462,7 @@ function buildLocatorStrategies(raw: RawElement): Locator[] {
         resilience: 85,
         matchCount: 0,
         isUnique: false,
+        semantic: semanticMeta(raw.role, nameForRole),
       });
     } else {
       locators.push({
@@ -432,6 +472,7 @@ function buildLocatorStrategies(raw: RawElement): Locator[] {
         resilience: 65,
         matchCount: 0,
         isUnique: false,
+        semantic: semanticMeta(raw.role),
       });
     }
   }
@@ -447,6 +488,7 @@ function buildLocatorStrategies(raw: RawElement): Locator[] {
         resilience: 80,
         matchCount: 0,
         isUnique: false,
+        semantic: semanticMeta(raw.role, labelText),
       });
     }
   }
@@ -460,6 +502,7 @@ function buildLocatorStrategies(raw: RawElement): Locator[] {
       resilience: 65,
       matchCount: 0,
       isUnique: false,
+      semantic: semanticMeta(raw.role, accessible),
     });
   }
 
@@ -478,6 +521,7 @@ function buildLocatorStrategies(raw: RawElement): Locator[] {
       resilience: 55,
       matchCount: 0,
       isUnique: false,
+      semantic: semanticMeta(raw.role, accessible),
     });
   }
 
@@ -492,10 +536,28 @@ function buildLocatorStrategies(raw: RawElement): Locator[] {
       resilience: isIdBased ? 45 : isTestIdBased ? 50 : 20,
       matchCount: 0,
       isUnique: false,
+      semantic: semanticMeta(raw.role, accessible),
     });
   }
 
   return locators;
+}
+
+
+function applyLocatorScores(elements: ElementLocator[]): void {
+  for (const el of elements) {
+    const scoped = el.locators.some((l) => l.isUnique);
+    for (const locator of el.locators) {
+      locator.volatility = volatilityForLocator(locator.value);
+      const scored = scoreLocator(locator);
+      locator.score = scored.score;
+      locator.scoreReasons = scored.reasons;
+
+      if (!locator.isUnique && scoped && (locator.strategy === 'role' || locator.strategy === 'text')) {
+        locator.scope = [{ type: 'region', locator: `within(closest region) -> ${locator.value}` }];
+      }
+    }
+  }
 }
 
 /**

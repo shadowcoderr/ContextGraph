@@ -66,6 +66,7 @@ export const CONFIG_SCHEMA = {
           type: 'object',
           properties: {
             enabled: { type: 'boolean' },
+            type: { enum: ['overlay', 'console'] },
           },
         },
         forceCapture: { type: 'boolean' },

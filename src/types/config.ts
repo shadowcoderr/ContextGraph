@@ -24,6 +24,7 @@ export interface ComponentsConfig {
 
 export interface NotificationsConfig {
   enabled: boolean;                    // Show in-page overlay during capture operations
+  type?: 'overlay' | 'console';        // Notification transport: DOM overlay (visual) or console log (non-visual)
 }
 
 export interface CaptureConfig {

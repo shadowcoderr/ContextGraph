@@ -78,12 +78,19 @@ export class BrowserAdapter {
       closeBrowserOnContextClose: false,
     };
 
-    // Always set viewport to ensure proper page sizing
-    if (config?.viewport) {
-      contextOptions.viewport = {
-        width: config.viewport.width,
-        height: config.viewport.height,
-      };
+    const browserConfig = config?.browser ?? config;
+
+    // In headed mode, allow the browser window to control viewport size so
+    // maximizing the window does not leave a letterboxed page area.
+    if (browserConfig?.viewport) {
+      if (browserConfig.headless) {
+        contextOptions.viewport = {
+          width: browserConfig.viewport.width,
+          height: browserConfig.viewport.height,
+        };
+      } else {
+        contextOptions.viewport = null;
+      }
     }
 
     this.context = await browser.newContext(contextOptions);

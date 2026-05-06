@@ -85,6 +85,18 @@ export interface Locator {
   // Locator candidate metadata for automated locator generation
   matchCount?: number;      // Number of elements matching this selector
   isUnique?: boolean;       // True if matchCount === 1
+  score?: number;
+  scoreReasons?: string[];
+  volatility?: 'low' | 'medium' | 'high';
+  semantic?: {
+    role?: string;
+    accessibleName?: string;
+    accessibleDescription?: string;
+  };
+  scope?: Array<{
+    type: 'dialog' | 'region' | 'row' | 'listitem' | 'frame' | 'shadow' | 'custom';
+    locator: string;
+  }>;
 }
 
 export interface ElementStyles {
@@ -126,6 +138,8 @@ export interface FormFieldDetails {
 }
 
 export interface ElementLocator {
+  framePath?: string;
+  shadowContext?: boolean;
   elementId: string;
   tagName: string;
   text?: string;

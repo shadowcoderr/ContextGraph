@@ -39,6 +39,7 @@ export const DEFAULT_CONFIG: Config = {
     },
     notifications: {
       enabled: true,
+      type: 'overlay',
     },
     forceCapture: false,
   },

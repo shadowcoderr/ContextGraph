@@ -3,6 +3,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { logger } from '../utils/logger';
 import { getVersion } from '../utils/version';
+import { pickBestLocator } from '../analyzers/locator-policy';
 
 export interface BundleOptions {
   /** Output format: 'markdown' (default) or 'json' */
@@ -44,6 +45,14 @@ export interface BundledPage {
   apiCalls: Array<{ method: string; path: string; status?: number | undefined; durationMs?: number | undefined }>;
   consoleErrors: Array<{ message: string; source?: string | undefined }>;
   formFields: Array<{ label?: string | undefined; type: string; required: boolean; locator: string }>;
+}
+
+interface BundleComputedStats {
+  totalPages: number;
+  capturedNetworkRequests: number;
+  observedApiCalls: number;
+  screenshots: number;
+  storageSize: string;
 }
 
 /**
@@ -204,15 +213,11 @@ export class AIContextBundler {
     maxCount: number
   ): BundledPage['elements'] {
     if (!rawElements) return [];
-    return rawElements
+    const mapped = rawElements
       .filter(e => e.computedState?.isVisible)
       .slice(0, maxCount)
       .map(e => {
-        const best =
-          e.locators?.find((l: any) => l.isUnique && l.strategy === 'testid') ||
-          e.locators?.find((l: any) => l.isUnique && l.strategy === 'role') ||
-          e.locators?.find((l: any) => l.isUnique) ||
-          e.locators?.[0];
+        const best = pickBestLocator(e.locators || []);
 
         const states: string[] = [];
         if (!e.computedState?.isEnabled) states.push('disabled');
@@ -220,8 +225,13 @@ export class AIContextBundler {
         if (e.computedState?.isEditable) states.push('editable');
 
         return {
-          role: e.tagName,
-          name: e.text?.trim().substring(0, 50) || e.attributes?.['aria-label'] || undefined,
+          role: best?.semantic?.role || e.attributes?.role || e.tagName,
+          name: this.normalizeAccessibleName(
+            best?.semantic?.accessibleName ||
+              e.text?.trim().substring(0, 50) ||
+              e.attributes?.['aria-label'] ||
+              undefined,
+          ),
           bestLocator: best?.value || `locator('[data-cc-element-id="${e.elementId}"]')`,
           state: states.join(', ') || 'enabled',
           position:
@@ -230,6 +240,29 @@ export class AIContextBundler {
               : undefined,
         };
       });
+
+    return this.dedupeElements(mapped);
+  }
+
+  private normalizeAccessibleName(name?: string): string | undefined {
+    if (!name) return undefined;
+    const normalized = name.replace(/\s+/g, ' ').trim();
+    if (!normalized) return undefined;
+    return normalized.length > 90 ? `${normalized.substring(0, 87)}...` : normalized;
+  }
+
+  private dedupeElements(elements: BundledPage['elements']): BundledPage['elements'] {
+    const seen = new Set<string>();
+    const deduped: BundledPage['elements'] = [];
+
+    for (const element of elements) {
+      const key = `${element.role}||${element.name || ''}||${element.bestLocator}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      deduped.push(element);
+    }
+
+    return deduped;
   }
 
   private extractFormFields(formFields: any[], elements: any[]): BundledPage['formFields'] {
@@ -237,10 +270,7 @@ export class AIContextBundler {
 
     for (const field of formFields) {
       const el = elements.find(e => e.elementId === field.elementId);
-      const best =
-        el?.locators?.find((l: any) => l.isUnique && l.strategy === 'label') ||
-        el?.locators?.find((l: any) => l.isUnique) ||
-        el?.locators?.[0];
+      const best = pickBestLocator(el?.locators || []);
 
       result.push({
         label: field.label,
@@ -295,7 +325,7 @@ export class AIContextBundler {
     const content =
       this.options.format === 'json'
         ? this.renderJson(pages, domain, manifest)
-        : this.renderMarkdown(pages, domain, manifest);
+        : await this.renderMarkdown(pages, domain, manifest);
 
     await fs.writeFile(outputPath, content, 'utf8');
     return outputPath;
@@ -316,8 +346,8 @@ export class AIContextBundler {
     );
   }
 
-  private renderMarkdown(pages: BundledPage[], domain: string, manifest: any): string {
-    const stats = manifest?.statistics;
+  private async renderMarkdown(pages: BundledPage[], domain: string, manifest: any): Promise<string> {
+    const stats = await this.computeBundleStats(pages, domain, manifest);
     const lines: string[] = [];
 
     // ── Header ──
@@ -331,17 +361,16 @@ export class AIContextBundler {
     );
     lines.push('');
 
-    if (stats) {
-      lines.push('## Session Summary');
-      lines.push('');
-      lines.push(`| Metric | Value |`);
-      lines.push(`|--------|-------|`);
-      lines.push(`| Total pages | ${stats.totalPages} |`);
-      lines.push(`| Network requests | ${stats.totalNetworkRequests ?? 'n/a'} |`);
-      lines.push(`| Screenshots | ${stats.totalScreenshots ?? 0} |`);
-      lines.push(`| Storage size | ${stats.storageSize} |`);
-      lines.push('');
-    }
+    lines.push('## Session Summary');
+    lines.push('');
+    lines.push(`| Metric | Value |`);
+    lines.push(`|--------|-------|`);
+    lines.push(`| Total pages | ${stats.totalPages} |`);
+    lines.push(`| Captured network requests | ${stats.capturedNetworkRequests} |`);
+    lines.push(`| Observed API calls (summarized) | ${stats.observedApiCalls} |`);
+    lines.push(`| Screenshots | ${stats.screenshots} |`);
+    lines.push(`| Storage size | ${stats.storageSize} |`);
+    lines.push('');
 
     // ── Per-page sections ──
     for (let i = 0; i < pages.length; i++) {
@@ -436,5 +465,41 @@ export class AIContextBundler {
     lines.push('');
 
     return lines.join('\n');
+  }
+
+  private async computeBundleStats(
+    pages: BundledPage[],
+    domain: string,
+    manifest: any,
+  ): Promise<BundleComputedStats> {
+    const networkLogPath = path.join(this.outputDir, domain, 'network', 'traffic_log.jsonl');
+    const pagesDir = path.join(this.outputDir, domain, 'pages');
+
+    let capturedNetworkRequests = 0;
+    if (await fs.pathExists(networkLogPath)) {
+      const contents = await fs.readFile(networkLogPath, 'utf8');
+      const lines = contents.split('\n').filter(Boolean);
+      capturedNetworkRequests = lines.length;
+    }
+
+    let screenshots = 0;
+    if (await fs.pathExists(pagesDir)) {
+      const pageDirs = await fs.readdir(pagesDir, { withFileTypes: true });
+      for (const dirent of pageDirs) {
+        if (!dirent.isDirectory()) continue;
+        const screenshotsDir = path.join(pagesDir, dirent.name, 'screenshots');
+        if (!(await fs.pathExists(screenshotsDir))) continue;
+        const files = await fs.readdir(screenshotsDir);
+        screenshots += files.filter(f => f.endsWith('.png')).length;
+      }
+    }
+
+    return {
+      totalPages: pages.length,
+      capturedNetworkRequests,
+      observedApiCalls: pages.reduce((sum, p) => sum + p.apiCalls.length, 0),
+      screenshots,
+      storageSize: manifest?.statistics?.storageSize || 'n/a',
+    };
   }
 }
