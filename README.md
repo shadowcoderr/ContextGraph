@@ -12,11 +12,18 @@
 
 [![npm version](https://img.shields.io/npm/v/@shadowcoderr/context-graph?style=flat-square&color=0066cc&label=npm)](https://www.npmjs.com/package/@shadowcoderr/context-graph)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Playwright](https://img.shields.io/badge/Playwright-1.40%2B-2ead33?style=flat-square&logo=playwright&logoColor=white)](https://playwright.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.x-3178c6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Playwright](https://img.shields.io/badge/Playwright-1.59%2B-2ead33?style=flat-square&logo=playwright&logoColor=white)](https://playwright.dev)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)](LICENSE)
 [![Zero Telemetry](https://img.shields.io/badge/telemetry-none-red?style=flat-square)](README.md#security-model)
 
+<br />
+
+## 🎬 Demo
+
+![ContextGraph Demo](https://raw.githubusercontent.com/shadowcoderr/ContextGraph/main/ContextGraph.gif)
+
+<br />
 
 [**Quick Start**](#-quick-start) • [**Features**](#-key-features) • [**Output**](#-what-you-get) • [**AI Integration**](#-ai-integration) • [**Config**](#-configuration) • [**Docs**](docs/USER_GUIDE.md)
 

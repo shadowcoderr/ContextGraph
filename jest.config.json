@@ -1,6 +1,12 @@
 {
   "preset": "ts-jest",
   "testEnvironment": "node",
+  "setupFilesAfterEnv": ["<rootDir>/tests/setup.ts"],
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "tsconfig.json"
+    }
+  },
   "roots": [
     "<rootDir>/tests",
     "<rootDir>/src"
