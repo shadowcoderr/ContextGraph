@@ -459,22 +459,6 @@ context-graph --mode recorder --url https://app.example.com --recorder-capture
 
 ---
 
-## 🛠️ Development
-
-```bash
-# Clone and install
-git clone https://github.com/shadowcoderr/ContextGraph
-cd ContextGraph
-npm install
-
-# Build
-npm run build
-
-# Run in dev mode
-npm run dev -- --mode browser --url https://example.com
-
----
-
 ## 📖 Documentation
 
 Full technical documentation including architecture deep-dive, module reference, all identified issues and their fixes, proposed features, output schema reference, security model, and STLC integration patterns:
@@ -509,13 +493,4 @@ MIT © [Shadow Coderr](https://github.com/shadowcoderr)
 
 </div>
 
-## Locator Ranking Policy (v1)
 
-ContextGraph now applies a unified ranking policy for best locator selection:
-1. getByRole(role, { name })
-2. getByTestId()
-3. getByLabel()
-4. getByText()/getByPlaceholder()/getByAltText()/getByTitle()
-5. CSS fallback
-
-Locator candidates include deterministic score, score reasons, and volatility metadata.
